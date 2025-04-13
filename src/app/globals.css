@@ -1,26 +1,144 @@
-@import "tailwindcss";
-
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  display: flex; 
+}
+
+
+.container {
+  padding: 0;
+  margin: 0;
+  background: linear-gradient(to top, #FFFFFF, #004D61);
+}
+.h3{
+  font-size: 20px;
+}
+.header {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  position: fixed; 
+  top: 0; 
+  left: 0; 
+  width: 96%;
+  padding: 1rem 2rem;
+  background-color: black;
+  z-index: 1000; /* Para que o header fique acima de outros elementos */
+}
+.bloco-centra{
+
+  display: flex;
+  margin-top: 10%;
+  margin-left: 19%;
+  margin-right: 8%;
+}
+.bloco-centra h2{
+  align-content: center;
+}
+.ilustracao{
+  width: 50vw;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem; 
+  margin-right: 32%;
+}
+
+.nav-link {
+  color: #47A138; 
+  text-decoration: none; 
+}
+
+.nav-link:hover {
+  color: white; 
+}
+.vantagemBanco{
+  text-align: center;
+}
+.button-container {
+  display: flex;
+  gap: 1rem; 
+}
+
+.button {
+  background-color: black;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  border: 2px solid #47A138; 
+  color:#47A138; 
+}
+
+.button.secondary {
+  background-color: transparent; 
+  color: #47A138;
+  border: 2px solid #47A138; 
+}
+
+.button.secondary:hover {
+  background-color: #47A138; 
+  color: white; 
+}
+
+.button:hover {
+  background-color: #47A138; 
+  color:white;
+}
+
+
+
+.advantages {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-left: 10%;
+}
+.advantages h3{
+  color: #47A138;
+}
+.advantages p{
+  font-family: sans-serif;
+  color: #767676;
+  font-size: 16px;
+  line-height: 120%;
+}
+
+.advantage {
+  flex: 0 1 200px;
+  margin: 1rem;
+  padding: 1rem;
+  border-radius: 10px;
+  text-align: center;
+}
+.tituloContaCartao{
+  inline-size: max-content;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: black; 
+  color: white; 
+  padding: 2rem;
+  border-top: 1px solid white;
+}
+
+.services, .contact, .footer-logo {
+  flex: 1; 
+  text-align: center; 
+}
+
+.footer-logo img {
+  display: block;
+  margin: 0 auto; 
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  margin-top: 25px;
 }

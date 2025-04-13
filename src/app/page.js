@@ -1,103 +1,111 @@
-import Image from "next/image";
+import Image from 'next/image';
 
-export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.js
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+export default function HomePage() {
+    return (
+        <div className="container">
+           <header className="header">
+    <Image src="/icone_logo.png" alt="Bytebank" width={150} height={40} />
+    <nav className="nav-links">
+        <a href="#" className="nav-link">Sobre</a> 
+        <a href="#" className="nav-link">Serviços</a>
+    </nav>
+    <div className="button-container">
+        <button className="button">Abrir minha conta</button>
+        <button className="button secondary">Já tenho conta</button>
     </div>
-  );
-}
+</header>
+            <main className="main">
+              <div className='bloco-centra'>
+              <h2>
+                    Experimente mais liberdade no controle da sua vida financeira.
+                    Crie sua conta com a gente!
+                </h2>
+      
+                <div className="ilustracao">
+                    <Image
+                        src="/icone_ilustracao_banner.png"
+                        alt="Ilustração"
+                        width={600}
+                        height={400}
+                  
+                    />
+                </div>
+                
+              </div>
+              <h2 className='vantagemBanco'>Vantagens do nosso banco:</h2>
+                <section className="advantages">
+                    <div className="advantage">
+                        <Image
+                            src="/icone_presente.png"
+                            alt="Conta e cartão gratuitos"
+                            width={50}
+                            height={50}
+                        />
+                        <h3 className='tituloContaCartao'>Conta e cartão gratuitos</h3>
+                        <p>
+                            Isso mesmo, nossa conta é digital, sem custo fixo e mais que isso: sem tarifa de manutenção.
+                        </p>
+                    </div>
+                
+                    <div className="advantage">
+                        <Image
+                            src="/icone_saque.png"
+                            alt="Saques sem custo"
+                            width={50}
+                            height={50}
+                        />
+                        <h3>Saques sem custo</h3>
+                        <p>
+                            Você pode sacar gratuitamente 4x por mês de qualquer Banco 24h.
+                        </p>
+                    </div>
+                    <div className="advantage">
+                        <Image
+                            src="/icone_estrela.png"
+                            alt="Programa de pontos"
+                            width={50}
+                            height={50}
+                        />
+                        <h3>Programa de pontos</h3>
+                        <p>
+                            Você pode acumular pontos com suas compras no crédito sem pagar mensalidade!
+                        </p>
+                    </div>
+                    <div className="advantage">
+                        <Image
+                            src="/icone_dispositivo.png"
+                            alt="Seguro Dispositivos"
+                            width={50}
+                            height={50}
+                        />
+                        <h3>Seguro Dispositivos</h3>
+                        <p>
+                            Seus dispositivos móveis (computador e laptop) protegidos por uma mensalidade simbólica.
+                        </p>
+                    </div>
+                </section>
+            </main>
+            <footer className="footer">
+    <div className="services">
+        <h4>Serviços</h4>
+        <p>Conta corrente</p>
+        <p>Conta PJ</p>
+        <p>Cartão de crédito</p>
+    </div>
+    <div className="contact">
+        <h4>Contato</h4>
+        <p>0800 004 250 08</p>
+        <p>meajuda@bytebank.com.br</p>
+        <p>ouvidoria@bytebank.com.br</p>
+    </div>
+    <div className="footer-logo">
+        <h4>Desenvolvido por Alura</h4>
+        <img src="icone_logo_rodape.png" alt="Logo do Bytebank" />
+        <div className="social-icons">
+            <img src="icone_redes_sociais.png" alt="Ícones de redes sociais" />
+        </div>
+    </div>
+</footer>
+        </div>
+    );
+    }
