@@ -23,7 +23,40 @@ body {
   width: 96%;
   padding: 1rem 2rem;
   background-color: black;
-  z-index: 1000; /* Para que o header fique acima de outros elementos */
+  z-index: 1000; 
+}
+.nav-links {
+  display: flex;
+  gap: 2rem; 
+  margin-right: 32%;
+  
+}
+
+.nav-link {
+  background-color: black;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  color:#47A138; 
+}
+
+.nav-link:hover {
+  color: white; 
+}
+
+.button-container {
+  display: flex;
+  gap: 1rem; 
+}
+.dropdown {
+  display: flex;
+  flex-direction: column;
+  position: absolute; 
+  background-color: white; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+  z-index: 1001; 
+  margin-left: 40px;
 }
 .bloco-centra{
 
@@ -38,28 +71,11 @@ body {
 .ilustracao{
   width: 50vw;
 }
-
-.nav-links {
-  display: flex;
-  gap: 2rem; 
-  margin-right: 32%;
-}
-
-.nav-link {
-  color: #47A138; 
-  text-decoration: none; 
-}
-
-.nav-link:hover {
-  color: white; 
-}
 .vantagemBanco{
   text-align: center;
 }
-.button-container {
-  display: flex;
-  gap: 1rem; 
-}
+
+
 
 .button {
   background-color: black;
@@ -119,7 +135,8 @@ body {
 
 .footer {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column; 
+  justify-content: center;
   align-items: center;
   background-color: black; 
   color: white; 
@@ -128,8 +145,8 @@ body {
 }
 
 .services, .contact, .footer-logo {
-  flex: 1; 
   text-align: center; 
+  margin: 1rem 0;  
 }
 
 .footer-logo img {
@@ -141,4 +158,77 @@ body {
   display: flex;
   justify-content: center;
   margin-top: 25px;
+}
+
+
+
+/* Responsividade */
+@media (min-width: 768px) {
+  .footer {
+      flex-direction: row;
+  }
+
+  .services, .contact, .footer-logo {
+      flex: 1; 
+  }
+}
+@media (max-width: 768px) { 
+  .bloco-centra {
+      flex-direction: column; 
+      margin-top: 20%;
+  }
+}
+@media (min-width: 768px) {
+  .menu-button {
+      display: none;
+  }
+  .nav-link{
+    display: none;
+  } 
+}
+
+
+@media (max-width: 768px) {
+  .nav-links {
+      display: none; 
+  }
+  .button-container {
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    padding: 10px; 
+    margin: 0 auto; 
+    max-width: 400px; 
+}
+
+.button {
+    flex: 1; 
+    margin: 0 5px; 
+    color: white;
+    border: black;
+}
+.button.secondary{
+border:1px solid black;
+color: black;
+font-weight: 700;
+}
+  .menu-button {
+    display: block; 
+    background: transparent;
+    border: none;
+    color: #47A138;
+    font-size: 45px;
+    cursor: pointer;
+  }
+  .header {
+      justify-content: space-between; 
+  }
+  .imgLogo{
+    margin-right: 50px;
+  }
+  .ilustracao img{
+    width: 400px;
+    height: 400px;
+  }
+
 }
