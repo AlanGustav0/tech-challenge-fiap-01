@@ -1,0 +1,136 @@
+.modal-overlay {
+    position: absolute; 
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    opacity: 0; 
+    transition: opacity 0.3s ease;
+    pointer-events: none; 
+}
+.modal-overlay.open {
+    opacity: 1; 
+    pointer-events: auto; 
+    z-index: 1000;
+    height:75vw;
+}
+
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #F8F8F8;
+    padding: 20px;
+    border-radius: 8px;
+    width: 50%;
+    position: relative; 
+    height: auto;
+    transform: translateY(-20px); 
+    opacity: 0; 
+    transition: transform 0.3s ease, opacity 0.3s ease; 
+    
+}
+
+.modal-content.open{
+    max-width: 792px;
+}
+
+.register-container{
+    max-width: 589px;
+}
+
+.form-register{
+    display: flex;
+    justify-content:start;
+    flex-direction: column;
+}
+.form-group {
+    margin-bottom: 15px;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #DEE9EA;
+    border-radius: 8px;
+    color: #8B8B8B;
+    font-size: 14px;
+    padding: 15px 20px 15px 20px;
+}
+
+input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #DEE9EA;
+    border-radius: 8px;
+    color: #8B8B8B;
+    font-size: 14px;
+    padding: 15px 20px 15px 20px;
+}
+
+input[type=password] {
+    width: 40%;
+    padding: 10px;
+    align-self: flex-start;
+    display: flex;
+    border: 1px solid #DEE9EA;
+    border-radius: 8px;
+    color: #8B8B8B;
+    font-size: 14px;
+    padding: 15px 20px 15px 20px;
+}
+
+
+input[type=checkbox]{
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 5px;
+    border: 2px solid #47A138;
+    font-weight: 400;
+}
+
+.group-checkbox{
+    display: flex;
+    align-items: center;
+    text-align: justify;
+    gap: 10px;
+    max-width: 650px;
+}
+
+.name-register{
+    display: flex;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+.email-register{
+    display: flex;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+.password-register{
+    display: flex;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.submit-button-register {
+    padding: 8px;
+    background-color: #FF5031;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    height: 40px;
+    width: 20%;
+    &:hover{
+        background-color: #47A138;
+        color: white;
+        border: none;
+    }
+}
+
