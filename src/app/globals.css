@@ -181,6 +181,9 @@ body {
 @media (min-width: 768px) {
   .menu-button {
       display: none;
+      opacity: 0; /* Começa invisível */
+      transition: opacity 0.5s ease; /* Transição suave para opacidade */
+      
   }
   .nav-link{
     display: none;
