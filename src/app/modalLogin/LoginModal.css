@@ -1,5 +1,5 @@
 .modal-overlay {
-    position: absolute; /* Mude para absolute */
+    position: absolute; 
     top: 0;
     left: 0;
     right: 0;
@@ -7,21 +7,33 @@
     background: rgba(0, 0, 0, 0.7);
     display: flex;
     justify-content: center;
-    align-items: flex-start; /* Alinha o modal ao topo da tela */
-    z-index: 1000; /* Garante que o modal fique acima de outros elementos */
-    height: max-content;
+    align-items: center; 
+    opacity: 0; 
+    transition: opacity 0.3s ease;
+    pointer-events: none; 
 }
-
+.modal-overlay.open {
+    opacity: 1; 
+    pointer-events: auto; 
+    z-index: 1000;
+    height:75vw;
+}
 .modal-content {
     background: #F8F8F8;
     padding: 20px;
     border-radius: 8px;
     width: 50%;
-    position: relative; /* Mantenha como relative */
+    position: relative; 
     text-align: center;
-    margin-top: 100px; /* Ajuste conforme necessário */
-    height: 60vw;
+    height: auto;
+    transform: translateY(-20px); 
+    opacity: 0; 
+    transition: transform 0.3s ease, opacity 0.3s ease; 
     
+}
+.modal-content.open {
+    transform: translateY(0);
+    opacity: 1; 
 }
 .close-button {
     position: absolute;
@@ -93,31 +105,46 @@ input {
 /* responsividade*/
 @media (max-width: 768px) {
     .modal-content {
-        width: 90%; /* Reduz a largura do modal */
-        margin-top: 20px; /* Ajuste o espaçamento superior para telas menores */
-        padding: 15px; /* Diminui o padding */
-        height: 140vw;
-        transition: opacity 0.5s ease; /* Transição suave para opacidade */
+        width: 90%; 
+       margin-bottom: auto;
+        padding: 15px; 
+        height: auto;
+   
     }
     .modal-overlay{
-        height: max-content;
+        height: 90vw;
     }
 
     .form-group {
-        margin-bottom: 10px; /* Ajusta o espaçamento entre os grupos de formulário */
+        margin-bottom: 10px; 
     }
 
     .submit-button {
-        width: 20%; /* Botão ocupa a largura total */
+        width: 20%; 
     }
 
     .imgLogin {
-        display: none; /* Esconde a imagem para telas menores */
+        display: none;
     }
     .imgLogin {
-        width: 80%; /* Ajusta a largura da imagem para telas menores */
-        height: auto; /* Mantém a proporção da imagem */
-        margin: 0 auto; /* Centraliza a imagem */
-        display: block; /* Garante que a imagem seja um bloco */
+        width: 80%;
+        height: auto; 
+        margin: 0 auto; 
+        display: block; 
+    }
+    .email{
+        margin-left:77px ;
+    }
+    .senha{
+        margin-left: 77px;
+    }
+    .forgot-password{
+        margin-left: 77px;
+    }
+    .modal-overlay.open {
+        opacity: 1; 
+        pointer-events: auto; 
+        z-index: 1000;
+        height:490vw;
     }
 }

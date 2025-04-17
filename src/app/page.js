@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
-import LoginModal from './LoginModal'; // Importando o modal
+import LoginModal from './modalLogin/LoginModal'; // Importando o modal
 
 export default function HomePage() {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -36,12 +36,12 @@ export default function HomePage() {
                         <button className="button secondary" onClick={() => setIsModalOpen(true)}>Já tenho conta</button>
                     </div>
                 )}
-                {menuOpen && (
-                    <div className="dropdown">
-                        <a href="#" className="nav-link">Sobre</a>
-                        <a href="#" className="nav-link">Serviços</a>
-                    </div>
-                )}
+                     {menuOpen && (
+                        <div className={`dropdown ${menuOpen ? 'open' : ''}`}>
+                            <a href="#" className="nav-link">Sobre</a>
+                            <a href="#" className="nav-link">Serviços</a>
+                        </div>
+                    )}
             </header>
 
             <main className="main">

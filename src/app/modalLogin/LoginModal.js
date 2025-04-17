@@ -1,30 +1,32 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './LoginModal.css'; 
 import Image from 'next/image'; 
 
 const LoginModal = ({ onClose }) => {
-    const modalRef = useRef(null); // Referência para o modal
-
-    const handleClickOutside = (event) => {
-        if (modalRef.current && !modalRef.current.contains(event.target)) {
-            onClose(); // Fecha o modal se o clique foi fora dele
-        }
-    };
+    const modalRef = useRef(null); 
+    const [isOpen, setIsOpen] = useState(false);
 
     useEffect(() => {
-        // Adiciona o event listener para cliques fora do modal
+        setIsOpen(true); // Abre o modal suavemente
+
+        const handleClickOutside = (event) => {
+            if (modalRef.current && !modalRef.current.contains(event.target)) {
+                setIsOpen(false); // Fecha o modal
+                onClose(); // Chama a função de fechamento passada como prop
+            }
+        };
+
         document.addEventListener('mousedown', handleClickOutside);
         
         return () => {
-            // Remove o event listener ao desmontar o componente
             document.removeEventListener('mousedown', handleClickOutside);
         };
-    }, []);
+    }, [onClose]);
 
     return (
-        <div className="modal-overlay">
-            <div className="modal-content" ref={modalRef}>
-                <button className="close-button" onClick={onClose}>×</button>
+        <div className={`modal-overlay ${isOpen ? 'open' : ''}`}>
+            <div className={`modal-content ${isOpen ? 'open' : ''}`} ref={modalRef}>
+                <button className="close-button" onClick={() => { setIsOpen(false); onClose(); }}>×</button>
                 <Image className='imgLogin' src="/icone_login.png" alt="imagem login" width={333} height={267} />
                 <h2>Login</h2>
                 <form>
