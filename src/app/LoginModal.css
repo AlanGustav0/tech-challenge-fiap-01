@@ -1,0 +1,123 @@
+.modal-overlay {
+    position: absolute; /* Mude para absolute */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Alinha o modal ao topo da tela */
+    z-index: 1000; /* Garante que o modal fique acima de outros elementos */
+    height: max-content;
+}
+
+.modal-content {
+    background: #F8F8F8;
+    padding: 20px;
+    border-radius: 8px;
+    width: 50%;
+    position: relative; /* Mantenha como relative */
+    text-align: center;
+    margin-top: 100px; /* Ajuste conforme necessário */
+    height: 60vw;
+    
+}
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    border: none;
+    background: transparent;
+    font-size: 40px;
+    cursor: pointer;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+input {
+    width: 70%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.email{
+    display: flex;
+    margin-left: 90px;
+    font-weight: 700;
+}
+.senha{
+    display: flex;
+    margin-left: 90px;
+    font-weight: 700;
+}
+.submit-button {
+    padding: 10px;
+    background-color: #47A138;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 20%;
+}
+
+.submit-button:hover {
+    background-color: #005bb5;
+}
+
+.forgot-password {
+    margin-top: 10px;
+    display: flex;
+    margin-left: 90px;
+
+}
+
+.forgot-password a {
+    color: #47A138;;
+    text-decoration: none;
+}
+
+.forgot-password a:hover {
+    text-decoration: underline;
+}
+
+.login-icon {
+    margin-top: 20px;
+    width: 50px;
+    height: auto;
+}
+
+
+/* responsividade*/
+@media (max-width: 768px) {
+    .modal-content {
+        width: 90%; /* Reduz a largura do modal */
+        margin-top: 20px; /* Ajuste o espaçamento superior para telas menores */
+        padding: 15px; /* Diminui o padding */
+        height: 140vw;
+        transition: opacity 0.5s ease; /* Transição suave para opacidade */
+    }
+    .modal-overlay{
+        height: max-content;
+    }
+
+    .form-group {
+        margin-bottom: 10px; /* Ajusta o espaçamento entre os grupos de formulário */
+    }
+
+    .submit-button {
+        width: 20%; /* Botão ocupa a largura total */
+    }
+
+    .imgLogin {
+        display: none; /* Esconde a imagem para telas menores */
+    }
+    .imgLogin {
+        width: 80%; /* Ajusta a largura da imagem para telas menores */
+        height: auto; /* Mantém a proporção da imagem */
+        margin: 0 auto; /* Centraliza a imagem */
+        display: block; /* Garante que a imagem seja um bloco */
+    }
+}

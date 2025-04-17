@@ -1,23 +1,22 @@
 'use client';
 
-
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
+import LoginModal from './LoginModal'; // Importando o modal
 
 export default function HomePage() {
     const [menuOpen, setMenuOpen] = useState(false);
     const [windowWidth, setWindowWidth] = useState(1352);
+    const [isModalOpen, setIsModalOpen] = useState(false); // Estado do modal
 
     const toggleMenu = () => {
         setMenuOpen(!menuOpen);
     };
 
-
     const handleResize = () => {
         setWindowWidth(window.innerWidth);
     };
 
-  
     useEffect(() => {
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);
@@ -34,7 +33,7 @@ export default function HomePage() {
                 {windowWidth > 768 && (
                     <div className="button-container">
                         <button className="button">Abrir minha conta</button>
-                        <button className="button secondary">Já tenho conta</button>
+                        <button className="button secondary" onClick={() => setIsModalOpen(true)}>Já tenho conta</button>
                     </div>
                 )}
                 {menuOpen && (
@@ -64,7 +63,7 @@ export default function HomePage() {
                     <>
                         <div className="button-container">
                             <button className="button">Abrir minha conta</button>
-                            <button className="button secondary">Já tenho conta</button>
+                            <button className="button secondary" onClick={() => setIsModalOpen(true)}>Já tenho conta</button>
                         </div>
                         <h2 className='vantagemBanco'>Vantagens do nosso banco:</h2>
                     </>
@@ -143,7 +142,8 @@ export default function HomePage() {
                     </div>
                 </div>
             </footer>
+
+            {isModalOpen && <LoginModal onClose={() => setIsModalOpen(false)} />} {/* Renderizando o modal */}
         </div>
     );
 }
-    
