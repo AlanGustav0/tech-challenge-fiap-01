@@ -24,7 +24,7 @@ const RegisterModal = ({ onClose }) => {
   }, [onClose]);
   return (
     <div className={`modal-overlay ${isOpen ? "open" : ""}`}>
-      <div className={`modal-content ${isOpen ? "open" : ""}`} ref={modalRef}>
+      <div className={`modal-content modal-register ${isOpen ? "open" : ""}`} ref={modalRef}>
         <div className="register-container">
           <button
             className="close-button"
@@ -48,6 +48,7 @@ const RegisterModal = ({ onClose }) => {
               <p className="name-register">Nome</p>
               <div className="form-group">
                 <input
+                  className="input-name-register"
                   type="text"
                   id="nome"
                   placeholder="Digite seu nome"
@@ -57,6 +58,7 @@ const RegisterModal = ({ onClose }) => {
               <p className="email-register">Email</p>
               <div className="form-group">
                 <input
+                  className="input-email-register"
                   type="email"
                   id="email"
                   placeholder="Digite seu email"
@@ -66,6 +68,7 @@ const RegisterModal = ({ onClose }) => {
               <p className="password-register">Senha</p>
               <div className="form-group">
                 <input
+                  className="input-password-register"
                   type="password"
                   id="password"
                   placeholder="Digite sua senha"
@@ -73,7 +76,7 @@ const RegisterModal = ({ onClose }) => {
                 />
               </div>
               <div className="form-group group-checkbox">
-                <input type="checkbox" id="terms" required />
+                <input type="checkbox" className="input-checkbox-register" id="terms" required />
                 <label htmlFor="terms">
                   Li e estou ciente quanto às condições de tratamento dos meus
                   dados conforme descrito na Política de Privacidade do banco
