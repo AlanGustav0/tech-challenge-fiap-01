@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "json-server": "json-server --watch db.json --port 4000"
   },
   "dependencies": {
     "next": "15.2.4",
@@ -19,6 +20,7 @@
     "@tailwindcss/postcss": "^4",
     "eslint": "^9",
     "eslint-config-next": "15.2.4",
+    "json-server": "^1.0.0-beta.3",
     "tailwindcss": "^4"
   }
 }
