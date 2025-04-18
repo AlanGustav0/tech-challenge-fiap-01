@@ -3,11 +3,13 @@
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import LoginModal from './modalLogin/LoginModal'; // Importando o modal
+import RegisterModal from './modalRegister/RegisterModal';
 
 export default function HomePage() {
     const [menuOpen, setMenuOpen] = useState(false);
     const [windowWidth, setWindowWidth] = useState(1352);
     const [isModalOpen, setIsModalOpen] = useState(false); // Estado do modal
+    const [isModalRegisterOpen, setIsModalRegisterOpen] = useState(false); // Estado do modal
 
     const toggleMenu = () => {
         setMenuOpen(!menuOpen);
@@ -32,7 +34,7 @@ export default function HomePage() {
 
                 {windowWidth > 768 && (
                     <div className="button-container">
-                        <button className="button">Abrir minha conta</button>
+                        <button className="button" onClick={() => setIsModalRegisterOpen(true)}>Abrir minha conta</button>
                         <button className="button secondary" onClick={() => setIsModalOpen(true)}>Já tenho conta</button>
                     </div>
                 )}
@@ -62,7 +64,7 @@ export default function HomePage() {
                 {windowWidth <= 768 && (
                     <>
                         <div className="button-container">
-                            <button className="button">Abrir minha conta</button>
+                            <button className="button" onClick={() => setIsModalRegisterOpen(true)}>Abrir minha conta</button>
                             <button className="button secondary" onClick={() => setIsModalOpen(true)}>Já tenho conta</button>
                         </div>
                         <h2 className='vantagemBanco'>Vantagens do nosso banco:</h2>
@@ -144,6 +146,7 @@ export default function HomePage() {
             </footer>
 
             {isModalOpen && <LoginModal onClose={() => setIsModalOpen(false)} />} {/* Renderizando o modal */}
+            {isModalRegisterOpen && <RegisterModal onClose={() => setIsModalRegisterOpen(false)} />} {/* Renderizando o modal */}
         </div>
     );
 }
