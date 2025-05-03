@@ -60,7 +60,7 @@
 .content {
     display: flex; 
     width: 100%;
-    margin-left: 15%;
+    margin-left: 12%;
     margin-top: 30px;
 }
 
@@ -71,6 +71,7 @@
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); 
     height: calc(100vh - 60px); 
     text-align: center;
+    margin-left: -5%;
 }
 
 .menu-list {
@@ -92,18 +93,20 @@
 }
 
 .main-content {
-    flex: 1; 
+    display: flex;
     padding: 20px;
+    width: 72vw;
+    margin-top: -20px;
 }
 .balance-card {
     background-color: #007B7F; 
     color: white;
     padding: 20px;
     border-radius: 8px;
-    margin-top: -23px;
-    width: 50%;
+    width: 70%; /* Largura do cartão de saldo */
     height: 400px;
 }
+
 
 .balance-info {
     display: flex;
@@ -140,6 +143,74 @@
     margin-right: 22%;
     justify-self: end;
 }
+.headerExtrato{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+}
+.botaoEditar{
+    background-image: url('/icone_lapis.png');
+    background-repeat: no-repeat;
+}
+.botaoExcluir{
+    background-image: url('/icone_lixeira.png');
+    background-repeat: no-repeat;
+}
+.botaoEditar, .botaoExcluir {
+    width: 40px; 
+    height: 40px; 
+    border-radius: 50%; 
+    background-size: contain; 
+    border: none; 
+    cursor: pointer; 
+    display: inline-block; 
+}
+.extrato-card {
+    background-color: #f8f8f8;
+    color: black;
+    padding: 20px;
+    border-radius: 8px;
+    margin-left: 20px; 
+    margin-right: 50px;
+    width: 30%; 
+    height: 400px; 
+    overflow-y: auto; 
+}
+
+.extrato-item {
+    display: flex;
+    justify-content: space-between; 
+    margin: 10px 0; 
+    flex-direction: column;
+}
+
+.extrato-item span {
+    font-size: 16px; 
+
+}
+.mesExtrato{
+    color: #47A138;
+    font-weight: 700;
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+}
+.depositoExtrato{
+    padding: 10px 0 10px 0;
+    display: flex;
+    justify-content: space-between;
+}
+.dataExtrato{
+    color: #8B8B8B;
+    font-size: 13px;
+}
+.valorExtrato{
+    padding-bottom: 10px;
+    border-bottom: 1px solid #47A138;
+    font-weight: 700;
+}
+
 
 /* Responsividade */
 @media (max-width: 768px) {
@@ -150,13 +221,15 @@
     }
 
     .sidebar {
-        width: 94vw; 
+        width: auto; 
         height: auto; 
         box-shadow: none; 
     }
 
     .main-content {
         padding: 10px; 
+        flex-direction: column;
+        width: auto;
     }
 
     .user-menu {
@@ -176,8 +249,8 @@
         font-weight: 700;
     }
     .balance-card {
-        margin-top: 0;
-        width: 88%;
+        margin-top: 20px;
+        width: 90vw;
         padding-top: 30px; 
         background-image: url('/cofre-saldo.png');
         background-repeat: no-repeat;
@@ -187,6 +260,11 @@
     }
     .valorSaldo{
         margin-right: 17%;
+    }
+    .extrato-card{
+        margin-right: 55px;
+        width: auto;
+        margin-top: 15px;
     }
 }
 
