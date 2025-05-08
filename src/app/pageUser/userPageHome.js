@@ -30,6 +30,15 @@ const UserPageHome = () => {
         return now.toLocaleDateString('pt-BR', options);
     };
 
+    const handleTransaction = () => {
+        const transactionType = document.getElementById("tipoTransacao").value;
+        const transactionValue = document.getElementById("valorTransacao").value;
+
+   
+
+    
+    };
+
     useEffect(() => {
         const handleClickOutside = (event) => {
             if (menuVisible && menuRef.current && !menuRef.current.contains(event.target)) {
@@ -85,50 +94,67 @@ const UserPageHome = () => {
                     </ul>
                 </div>
                 <div className="main-content">
-                    <div className="balance-card">
-                        <h2>Olá, Joana! :)</h2>
-                        <p>{getCurrentDate()}</p>
-                        <div className="balance-info">
-                            <span>Saldo</span>
-                            <button onClick={toggleBalanceVisibility}>
-                                {isBalanceVisible ? <FaEye /> : <FaEyeSlash />}
-                            </button>
+                    <div className="left-column">
+                        <div className="balance-card">
+                            <h2>Olá, Joana! :)</h2>
+                            <p>{getCurrentDate()}</p>
+                            <div className="balance-info">
+                                <span>Saldo</span>
+                                <button onClick={toggleBalanceVisibility}>
+                                    {isBalanceVisible ? <FaEye /> : <FaEyeSlash />}
+                                </button>
+                            </div>
+                            <p className='contaCorrente'>Conta Corrente</p>
+                            <p className='valorSaldo'>
+                                {isBalanceVisible ? `R$ ${balance.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}` : '●●●,●●'}
+                            </p>
                         </div>
-                        <p className='contaCorrente'>Conta Corrente</p>
-                        <p className='valorSaldo'>
-                            {isBalanceVisible ? `R$ ${balance.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}` : '●●●,●●'}
-                        </p>
+
+                        <div className="bloco-transacao">
+                            <h3 className='novaTrasacao'>Nova Transação</h3>
+                            <div className="select-container">
+                            <select id="tipoTransacao">
+                                <option value="">Selecione o tipo de transação</option>
+                                <option value="deposito">Câmbio de Moeda</option>
+                                <option value="saque">DOC/TED</option>
+                                <option value="transferencia">Empréstimos e Financiamento</option>
+                            </select>
+                        </div>
+                        <label htmlFor="valorTransacao" style={{ color: '#DEE9EA' }}>Valor</label>
+                            <input type="text" id="valorTransacao" placeholder="00,00" />
+                            <button className ='concluirTransacao'onClick={handleTransaction}>Concluir transação</button>
+                        </div>
                     </div>
+
                     <div className="extrato-card">
                         <div className='headerExtrato'>
-                        <h2>Extrato</h2>
-                        <button className='botaoEditar'></button>
-                        <button className='botaoExcluir'></button>
+                            <h2>Extrato</h2>
+                            <button className='botaoEditar'></button>
+                            <button className='botaoExcluir'></button>
                         </div>
                         
                         <div className="extrato-item">
                             <div className='mesExtrato'>
-                            <span >Novembro</span>
-                            <input type="checkbox"  />
+                                <span>Novembro</span>
+                                <input type="checkbox" />
                             </div>
                             <div className='depositoExtrato'>
-                            <span >Depósito</span>
-                            <span className='dataExtrato' >20/11/2035</span>
+                                <span>Depósito</span>
+                                <span className='dataExtrato'>20/11/2035</span>
                             </div>                     
                             <span className='valorExtrato'>R$ 150</span>
 
                             <div className='mesExtrato'>
-                            <span >Dezembro</span>
-                            <input type="checkbox"  />
+                                <span>Dezembro</span>
+                                <input type="checkbox" />
                             </div>
 
                             <div className='depositoExtrato'>
-                            <span >Depósito</span>
-                            <span className='dataExtrato' >20/11/2035</span>
+                                <span>Depósito</span>
+                                <span className='dataExtrato'>20/11/2035</span>
                             </div>                     
                             <span className='valorExtrato'>R$ 150</span>
                         </div>
-                       
                     </div>
                 </div>
             </div>
