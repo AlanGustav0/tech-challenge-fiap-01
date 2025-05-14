@@ -1,0 +1,49 @@
+.sidebar {
+    width: 180px; /* Largura do menu lateral */
+    background-color: #f8f8f8; /* Cor de fundo do menu */
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Sombra */
+    height: calc(100vh - 60px); /* Altura total menos a altura da navbar */
+    text-align: center;
+    border-radius: 2%;
+}
+
+.menu-list {
+    list-style-type: none; /* Remove marcadores */
+    padding: 0; /* Remove preenchimento */
+}
+
+.menu-item {
+    margin: 10px 0; /* Espaçamento entre os itens */
+    cursor: pointer; /* Cursor de ponteiro */
+    
+ 
+}
+
+.menu-item:hover {
+    text-decoration: underline; /* Efeito ao passar o mouse */
+    color: #47A138; 
+    font-weight: 700;
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        width: 94vw; 
+        height: auto; 
+        box-shadow: none; 
+    }
+
+    .menu-list{
+        display: flex;
+        justify-content: space-around;
+    }
+    .menu-list hr {
+        display: none; 
+    }
+    .menu-item:hover {
+        text-decoration: underline; 
+        color: #47A138; 
+        font-weight: 700;
+    }
+    
+}
