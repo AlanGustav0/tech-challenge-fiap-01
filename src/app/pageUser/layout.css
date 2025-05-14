@@ -1,0 +1,19 @@
+.layout-container{
+    background-color: #E4EDE3;
+    
+}
+
+.layout-content{
+    display: flex;
+    padding: 1rem;
+    justify-content: center;
+}
+
+
+@media (max-width: 768px) {
+
+    .layout-content{
+        flex-direction: column;
+        padding: 0;
+    }
+}
