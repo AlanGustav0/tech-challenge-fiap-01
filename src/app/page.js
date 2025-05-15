@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 import LoginModal from './modalLogin/LoginModal'; // Importando o modal
 import RegisterModal from './modalRegister/RegisterModal';
 
+
 export default function HomePage() {
     const [menuOpen, setMenuOpen] = useState(false);
     const [windowWidth, setWindowWidth] = useState(1352);
