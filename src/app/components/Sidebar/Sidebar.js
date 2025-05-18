@@ -11,7 +11,7 @@ export default function Sidebar() {
                         <hr />
                         <li className="menu-item">Investimentos</li>
                         <hr />
-                        <li className="menu-item">Outros serviços</li>
+                        <li className="menu-item"><Link href="/financeiro/servicos">Outros serviços</Link></li>
                     </ul>
                 </div>
     );
