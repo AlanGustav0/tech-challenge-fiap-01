@@ -1,0 +1,81 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+
+.container-cartoes {
+  background-image: url("/fundo.png");
+  background-repeat: no-repeat;
+  max-width: 690px;
+  padding: 12px 12px 2px;
+}
+
+.titulo-secao {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  margin-left: 45px;
+  font-family: "Inter", sans-serif;
+}
+
+.cartao-section {
+  margin-inline: 30px;
+}
+
+.cartao-section h3 {
+  margin-left: 15px;
+  color: #2f2e41;
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+}
+
+.cartao {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px;
+  border-radius: 12px;
+  margin-bottom: 15px;
+}
+
+.acoes-cartao {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 250px;
+}
+
+.botao-configurar {
+  background-color: #ff5722;
+  color: white;
+  border: none;
+  padding: 15px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 16px;
+  margin-left: 20px;
+  font-family: "Inter", sans-serif;
+  font-weight: 700;
+}
+
+.botao-bloquear {
+  color: #ff5722;
+  background-color: #cacacd4f;
+  border: 2px solid #ff5722;
+  padding: 15px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 16px;
+  margin-left: 20px;
+  font-family: "Inter", sans-serif;
+  font-weight: 700;
+}
+
+.funcao-cartao {
+  margin-top: 10px;
+  font-size: 16px;
+  text-align: center;
+  color: #2f2e41;
+  margin-left: 20px;
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+}
