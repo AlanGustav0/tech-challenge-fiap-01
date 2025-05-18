@@ -63,3 +63,13 @@
     border-bottom: 1px solid #47A138;
     font-weight: 700;
 }
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .extrato-card{
+        margin-right: 55px;
+        width: auto;
+        margin-top: 15px;
+    }
+
+}
