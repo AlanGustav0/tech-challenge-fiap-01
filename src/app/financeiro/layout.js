@@ -1,6 +1,7 @@
 import ExtratoCard from "../components/ExtratoCard/Extratocard";
 import Navbar from "../components/Navbar/Navbar";
 import Sidebar from "../components/Sidebar/Sidebar";
+import BalancedCardComponent from "../components/BalancedCard/balancedCard";
 import "./layout.css";
 
 export default function Layout({ children }) {
@@ -11,7 +12,9 @@ export default function Layout({ children }) {
         <div>
           <Sidebar />
         </div>
-        <div>{children}</div>
+        <div className="layout-content-inner">
+          <BalancedCardComponent />
+          {children}</div>
         <div><ExtratoCard /></div>
       </div>
     </div>
