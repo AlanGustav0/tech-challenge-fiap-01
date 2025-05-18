@@ -5,9 +5,7 @@
 
 .main-content {
     display: flex;
-    padding: 20px;
     width: 70%;
-    margin-top: -20px;
 }
 
 .left-column {
@@ -16,51 +14,9 @@
     width: 70%; 
 }
 
-.balance-card {
-    background-color: #007B7F; 
-    color: white;
-    padding: 20px;
-    border-radius: 8px;
-    height: 400px;
-    min-width: 620px;
-}
 
 
-.balance-info {
-    display: flex;
-    align-items: center;
-    margin-right: 13%;
-    justify-self: flex-end;
-    padding-bottom: 10px;
-    width: 28%;
-    border-bottom: 1px solid #FF5031;
-}
-.balance-info span{
-    font-size: 20px;
-    font-weight: 600;
-}
 
-.balance-info button {
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 18px;
-    margin-left: 30px;
-    color: #FF5031;
-}
-.valorSaldo{
-    justify-self: end;
-    margin-right: 13%;
-    font-size: 29px;
-    font-weight: 400;
-    margin-top: -10px;
-}
-.contaCorrente{
-    font-size: 16px;
-    font-weight: 400;
-    margin-right: 22%;
-    justify-self: end;
-}
 .bloco-transacao {
     background-color:#CBCBCB; 
     padding: 20px;
@@ -161,34 +117,6 @@
         margin-top: 20px; 
     }
 
-    .sidebar {
-        width: 94vw; 
-        height: auto; 
-        box-shadow: none; 
-    }
-
-    .main-content {
-        padding: 10px; 
-    }
-
-    .balance-card {
-        margin-top: 20px;
-        width: 90vw;
-        padding-top: 30px; 
-        background-image: url('/cofre-saldo.png');
-        background-repeat: no-repeat;
-        background-position: left bottom; 
-    }.contaCorrente{
-        margin-right: 24%;
-    }
-    .valorSaldo{
-        margin-right: 17%;
-    }
-    .extrato-card{
-        margin-right: 55px;
-        width: auto;
-        margin-top: 15px;
-    }
     .bloco-transacao{
         width: 90vw;
         background-image: url('/icone_transacao.png');
