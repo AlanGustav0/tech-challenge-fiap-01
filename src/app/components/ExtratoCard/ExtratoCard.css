@@ -1,0 +1,75 @@
+.headerExtrato{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+}
+.botaoEditar{
+    background-image: url('/icone_lapis.png');
+    background-repeat: no-repeat;
+}
+.botaoExcluir{
+    background-image: url('/icone_lixeira.png');
+    background-repeat: no-repeat;
+}
+.botaoEditar, .botaoExcluir {
+    width: 40px; 
+    height: 40px; 
+    border-radius: 50%; 
+    background-size: contain; 
+    border: none; 
+    cursor: pointer; 
+    display: inline-block; 
+}
+.extrato-card {
+    background-color: #f8f8f8;
+    color: black;
+    padding: 20px;
+    border-radius: 8px;
+    margin-left: 20px; 
+    width: 100%; 
+    height: 400px; 
+    overflow-y: auto; 
+}
+.extrato-item {
+    display: flex;
+    justify-content: space-between; 
+    margin: 10px 0; 
+    flex-direction: column;
+}
+
+.extrato-item span {
+    font-size: 16px; 
+
+}
+.mesExtrato{
+    color: #47A138;
+    font-weight: 700;
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+}
+.depositoExtrato{
+    padding: 10px 0 10px 0;
+    display: flex;
+    justify-content: space-between;
+}
+.dataExtrato{
+    color: #8B8B8B;
+    font-size: 13px;
+}
+.valorExtrato{
+    padding-bottom: 10px;
+    border-bottom: 1px solid #47A138;
+    font-weight: 700;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .extrato-card{
+        margin-right: 55px;
+        width: auto;
+        margin-top: 15px;
+    }
+
+}

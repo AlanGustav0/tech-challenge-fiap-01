@@ -1,0 +1,40 @@
+.services-container{
+    background-image: url("/fundo_services.png");
+    background-repeat: no-repeat;
+    min-width: 620px;
+    font-family: "Inter", sans-serif;
+    border-radius: 8px;
+    padding: .5rem 2rem 2rem 2rem;
+}
+
+.titulo-servicos{
+    font-weight: 700;
+    font-size: 25px;
+}
+
+.card-services{
+    display:flex;
+    gap:1rem;
+    flex-wrap: wrap;
+}
+
+
+.card{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 30%;
+    height: 167px;
+    background-color: white ;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    
+
+}

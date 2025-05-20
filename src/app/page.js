@@ -2,8 +2,8 @@
 
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
-import LoginModal from './modalLogin/LoginModal'; // Importando o modal
-import RegisterModal from './modalRegister/RegisterModal';
+import LoginModal from './components/modalLogin/LoginModal'; // Importando o modal
+import RegisterModal from './components/modalRegister/RegisterModal';
 
 export default function HomePage() {
     const [menuOpen, setMenuOpen] = useState(false);

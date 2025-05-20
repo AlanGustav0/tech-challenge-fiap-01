@@ -1,0 +1,134 @@
+.user-page {
+    display: flex;
+    flex-direction: column; /* Coloca a navbar no topo */
+}
+
+.main-content {
+    display: flex;
+    width: 70%;
+}
+
+.left-column {
+    display: flex;
+    flex-direction: column;
+    width: 70%; 
+}
+
+
+
+
+.bloco-transacao {
+    background-color:#CBCBCB; 
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 20px;
+    display: grid;
+    min-width: 620px;
+}
+#valorTransacao{
+    width: 228px;
+    color: #444444;
+    border-radius: 8px;
+    border-color: #004D61;
+}
+
+.concluirTransacao{
+    height: 48px;
+    width: 250px;
+    margin-top: inherit;
+
+}
+.bloco-transacao h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.bloco-transacao label {
+    display: block;
+    margin: 10px 0 15px;
+}
+.select-container {
+    position: relative;
+    width: 355px; 
+    height: 35px;
+    background-color: white;
+    margin-bottom: 30px;
+    border-radius: 8px;
+    border-color: #004D61;
+  
+}
+.novaTrasacao{
+    color:#DEE9EA;
+    margin-bottom: 40px;
+}
+
+#tipoTransacao {
+    width: 100%;
+    color: #444444;
+    padding: 10px 30px 10px 10px; 
+    appearance: none; 
+    -moz-appearance: none; 
+    -webkit-appearance: none; 
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    border-color: #004D61;
+
+}
+#tipoTransacao option {
+    text-align: center;
+}
+
+.select-container::after {
+    content: '▼'; 
+    position: absolute;
+    right: 10px; 
+    top: 51%;
+    transform: translateY(-50%);
+    pointer-events: none; 
+    font-size: 13px;
+    color: #004D61;
+}
+
+.bloco-transacao select,
+.bloco-transacao input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.bloco-transacao button {
+    background-color: #007B7F;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+    border-color: #004D61;
+    cursor: pointer;
+}
+
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .content {
+        flex-direction: column; 
+        margin-left: 0; 
+        margin-top: 20px; 
+    }
+
+    .bloco-transacao{
+        width: 90vw;
+        background-image: url('/icone_transacao.png');
+        background-repeat: no-repeat;
+        background-position: 290px 85px; 
+    }
+}
+
+@media (max-width: 500px) {
+    .bloco-transacao{
+       justify-items: center;
+       background-image: none;
+    }
+}
+
