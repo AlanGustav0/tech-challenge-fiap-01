@@ -138,6 +138,17 @@
   }
 }
 
+.submit-button-register:disabled{
+  padding: 8px;
+  background-color: #c5c3c2;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor:default;
+  height: 40px;
+  width: 20%;
+}
+
 /* responsividade*/
 @media (max-width: 768px) {
   .modal-register {

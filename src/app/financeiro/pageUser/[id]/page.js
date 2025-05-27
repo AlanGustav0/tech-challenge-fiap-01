@@ -1,4 +1,4 @@
-import UserPageHome from './userPageHome';
+import UserPageHome from '../userPageHome';
 
 const PageUser = () => {
     return <UserPageHome />;
