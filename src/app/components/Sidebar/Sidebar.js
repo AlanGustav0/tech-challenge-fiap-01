@@ -9,7 +9,7 @@ export default function Sidebar() {
                         <hr />
                         <li className="menu-item">Transferências</li>
                         <hr />
-                        <li className="menu-item">Investimentos</li>
+                        <li className="menu-item"><Link href="/financeiro/investimentos">Investimentos</Link></li>
                         <hr />
                         <li className="menu-item"><Link href="/financeiro/servicos">Outros serviços</Link></li>
                     </ul>
