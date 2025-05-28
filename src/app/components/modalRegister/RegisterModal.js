@@ -5,7 +5,14 @@ import Image from "next/image";
 const RegisterModal = ({ onClose }) => {
   const modalRef = useRef(null);
   const [isOpen, setIsOpen] = useState(false);
-  const [formData, setFormData] = useState({name: "", email: "", password: "", terms: false});
+  const [formData, setFormData] = useState({
+    userName: "",
+    email: "",
+    password: "",
+    terms: false,
+    id: 0,
+    dataCriacao: new Date(),
+  });
 
   useEffect(() => {
     setIsOpen(true);
@@ -28,15 +35,64 @@ const RegisterModal = ({ onClose }) => {
       ...formData,
       [event.target.name]: event.target.value,
     });
+  };
+
+  const handleAccount = async () => {
+    const novaContaUsuario = {
+        userName: formData.userName,
+        id: formData.id,
+        dataCriacao: formData.dataCriacao,
+        saldo: 0,
+        extrato: [],
+      };
+      const response = await fetch("http://localhost:4000/contas", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+
+      body: JSON.stringify(novaContaUsuario),
+    });
   }
 
-  const handleSubmint = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log("Dados formulário:", formData);
-  }
+
+    const responseUsers = await fetch("http://localhost:4000/usuarios");
+
+    if (responseUsers.ok) {
+      const usuarios = await responseUsers.json();
+
+      const idUsuario =
+        usuarios.length > 0 ? usuarios[usuarios.length - 1].id + 1 : 1;
+      formData.id = idUsuario;
+    }
+
+    const response = await fetch("http://localhost:4000/usuarios", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+
+      body: JSON.stringify(formData),
+    });
+
+    if (response.ok) {
+      handleAccount();
+      alert("Usuário cadastrado com sucesso!");
+      setFormData({});
+      onClose();
+    } else {
+      alert("Erro ao cadastrar usuário!");
+      setFormData({});
+    }
+  };
   return (
     <div className={`modal-overlay ${isOpen ? "open" : ""}`}>
-      <div className={`modal-content modal-register ${isOpen ? "open" : ""}`} ref={modalRef}>
+      <div
+        className={`modal-content modal-register ${isOpen ? "open" : ""}`}
+        ref={modalRef}
+      >
         <div className="register-container">
           <button
             className="close-button"
@@ -55,7 +111,7 @@ const RegisterModal = ({ onClose }) => {
             height={267}
           />
           <h3>Preencha os campos abaixo para criar sua conta corrente!</h3>
-          <form onSubmit={handleSubmint}>
+          <form onSubmit={handleSubmit}>
             <div className="form-register">
               <p className="name-register">Nome</p>
               <div className="form-group">
@@ -63,9 +119,9 @@ const RegisterModal = ({ onClose }) => {
                   className="input-name-register"
                   type="text"
                   id="nome"
-                  name="name"
+                  name="userName"
                   placeholder="Digite seu nome"
-                  value={formData.name}
+                  value={formData.userName}
                   onChange={handleChangeFormData}
                   required
                 />
@@ -114,7 +170,11 @@ const RegisterModal = ({ onClose }) => {
                 </label>
               </div>
             </div>
-            <button type="submit" className="submit-button-register">
+            <button
+              type="submit"
+              className="submit-button-register"
+              disabled={!formData.terms}
+            >
               Criar conta
             </button>
           </form>

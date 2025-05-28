@@ -1,21 +1,32 @@
+'use client';
+
 import ExtratoCard from "../components/ExtratoCard/Extratocard";
 import Navbar from "../components/Navbar/Navbar";
 import Sidebar from "../components/Sidebar/Sidebar";
 import BalancedCardComponent from "../components/BalancedCard/balancedCard";
 import "./layout.css";
+import { usePathname } from "next/navigation";
+
 
 export default function Layout({ children }) {
+  const url = usePathname();
+
+  const id = parseInt(url.split('=')[1]);
+
   return (
     <div className="layout-container">
-      <Navbar />
+      <Navbar id={id}/>
       <div className="layout-content">
         <div>
           <Sidebar />
         </div>
         <div className="layout-content-inner">
-          <BalancedCardComponent />
-          {children}</div>
-        <div><ExtratoCard /></div>
+          <BalancedCardComponent id={id}/>
+          {children}
+        </div>
+        <div>
+          <ExtratoCard />
+        </div>
       </div>
     </div>
   );
