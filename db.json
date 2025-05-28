@@ -15,7 +15,14 @@
       "userName": "Usuário Teste",
       "dataCriacao": "2025-05-27T11:49:13.701Z",
       "saldo": 0,
-      "extrato": []
+      "extrato": [
+        {
+          "tipo": "Depósito",
+          "valor": 100,
+          "data": "2025-05-27T11:49:13.701Z",
+          "descricao": "Depósito inicial"
+        }
+      ]
     }
   ]
 }
