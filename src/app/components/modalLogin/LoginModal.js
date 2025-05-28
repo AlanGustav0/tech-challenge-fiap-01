@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import "./LoginModal.css";
 import Image from "next/image";
 import { redirect } from 'next/navigation'
+import { getUsers } from "../../financeiro/util-services";
 
 
 const LoginModal = ({ onClose }) => {
@@ -39,7 +40,7 @@ const LoginModal = ({ onClose }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const response = await fetch("http://localhost:4000/usuarios");
+    const response = getUsers();
 
     if (response.ok) {
       const usuarios = await response.json();
