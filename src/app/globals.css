@@ -165,7 +165,22 @@ a{
   margin-top: 25px;
 }
 
+.row {
+	flex-direction: row;
+}
+.row-reverse {
+	flex-direction: row-reverse;
+}
+.column {
+	flex-direction: column;
+}
+.column-reverse {
+	flex-direction: column-reverse;
+}
 
+.grow1 {
+	flex-grow: 1;
+}
 
 /* Responsividade */
 @media (min-width: 768px) {
