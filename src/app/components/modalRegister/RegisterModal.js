@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import "./RegisterModal.css";
 import Image from "next/image";
 import { createAccount, createUser }  from "../../financeiro/util-services";
+import { getUsers } from "../../financeiro/util-services";
 
 const RegisterModal = ({ onClose }) => {
   const modalRef = useRef(null);
@@ -63,7 +64,7 @@ const RegisterModal = ({ onClose }) => {
       const usuarios = await responseUsers.json();
 
       const idUsuario =
-        usuarios.length > 0 ? usuarios[usuarios.length - 1].id + 1 : 1;
+        usuarios.length > 0 ? parseInt(usuarios[usuarios.length - 1].id) + 1 : 1;
       formData.id = idUsuario;
     }
 

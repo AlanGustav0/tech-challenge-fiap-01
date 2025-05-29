@@ -40,7 +40,7 @@ const LoginModal = ({ onClose }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const response = getUsers();
+    const response = await getUsers();
 
     if (response.ok) {
       const usuarios = await response.json();

@@ -11,7 +11,7 @@ export async function getUserById(id) {
 }
 
 export async function getUsers() {
-  return fetch("http://localhost:4000/usuarios");
+  return await fetch("http://localhost:4000/usuarios");
 }
 
 export async function createUser(data) {
@@ -35,6 +35,17 @@ export async function getAccountUserById(id) {
   }
 
   return null;
+}
+
+export async function updateAccountById(id,account) {
+  return await fetch(`http://localhost:4000/contas/${id}`,{
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+
+      body: JSON.stringify(account),
+    });
 }
 
 export async function createAccount(account) {
