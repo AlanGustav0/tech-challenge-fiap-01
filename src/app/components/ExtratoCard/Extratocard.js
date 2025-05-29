@@ -21,8 +21,6 @@ export default function ExtratoCard(userId) {
       });
     }, [userId.id]);
 
-  console.log("Extrato:", account);
-
   return (
     <div className="extrato-card">
       <div className="headerExtrato">
