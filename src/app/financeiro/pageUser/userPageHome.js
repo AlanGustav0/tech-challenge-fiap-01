@@ -33,8 +33,13 @@ const UserPageHome = (userId) => {
     console.log(`Valor da transação: ${transactionValue}`);
 
     if (transactionType === "Depósito") {
+        if(transactionValue <= 0 || isNaN(transactionValue)) {
+          alert("Por favor, insira um valor válido para o depósito.");
+          return;
+        }
       account.saldo += parseFloat(transactionValue);
       account.extrato.push({
+        codigoTransacao: Math.floor(Math.random() * 100000),
         tipo: transactionType,
         valor: parseFloat(transactionValue),
         data: new Date().toISOString(),

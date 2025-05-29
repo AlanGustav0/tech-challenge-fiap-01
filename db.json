@@ -1,7 +1,7 @@
 {
   "usuarios": [
     {
-      "id": 1,
+      "id": "1",
       "userName": "Usuário Teste",
       "email": "teste@email.com",
       "password": "123456",
@@ -11,18 +11,23 @@
   ],
   "contas": [
     {
-      "id": 1,
       "userName": "Usuário Teste",
-      "dataCriacao": "2025-05-27T11:49:13.701Z",
-      "saldo": 0,
+      "saldo": 29,
       "extrato": [
         {
+          "codigoTransacao": 26,
           "tipo": "Depósito",
-          "valor": 100,
-          "data": "2025-05-27T11:49:13.701Z",
-          "descricao": "Depósito inicial"
+          "valor": 9,
+          "data": "2025-05-29T11:08:00.827Z"
+        },
+        {
+          "codigoTransacao": 61744,
+          "tipo": "Depósito",
+          "valor": 10,
+          "data": "2025-05-29T11:31:31.540Z"
         }
-      ]
+      ],
+      "id": "1"
     }
   ]
 }
