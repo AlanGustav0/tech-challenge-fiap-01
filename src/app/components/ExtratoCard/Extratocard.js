@@ -5,10 +5,12 @@ import {
   getformattedDate,
   getMonthName,
 } from "../../shared/utils/date-utils.ts";
+import { updateAccountById } from "../../financeiro/util-services";
 
 export default function ExtratoCard(userId) {
   const [isChecked, setIsChecked] = useState(false);
   const [code, codeSet] = useState(0);
+  const [newDate, setDate] = useState("");
   const [account, setAccount] = useState({
     userName: "",
     saldo: 0,
@@ -26,20 +28,51 @@ export default function ExtratoCard(userId) {
     });
   }, [userId.id]);
 
-  const handleExtract = (event) => {
+  const handleExtract = async (event) => {
     if (!isChecked) {
-      console.log("Extrato alterado:", event);
       setIsChecked(true);
       codeSet(event.codigoTransacao);
     } else {
       setIsChecked(false);
       codeSet(event.codigoTransacao);
+
+      const index = account.extrato.findIndex(
+        (item) => item.codigoTransacao === event.codigoTransacao
+      );
+
+      if (index == !-1) {
+        account.extrato[index].data = newDate;
+        account.extrato.splice(index, 1,account.extrato[index]);
+        const response = await updateAccountById(userId.id, account);
+
+        if (response.ok) {
+          alert(`Extrato editado com sucesso!`);
+        }
+      }
     }
   };
 
-  const handleDelete = (item) => {
-    console.log(item)
+  const handleDelete = async (event) => {
+    const index = account.extrato.findIndex(
+      (item) => item.codigoTransacao === event.codigoTransacao
+    );
+
+    if (index != -1) {
+      account.extrato.splice(index, 1);
+      const response = await updateAccountById(userId.id, account);
+
+      if (response.ok) {
+        alert(`Extrato removido com sucesso!`);
+        window.location.reload();
+      }
     }
+  };
+
+  const handleDate = (event) => {
+    const [year, month, day] = event.target.value.split('-');
+    const date = new Date(Number(year), Number(month) - 1, Number(day));
+    setDate(date);
+  }
 
   return (
     <div className="extrato-card">
@@ -61,14 +94,17 @@ export default function ExtratoCard(userId) {
                 }
                 onClick={() => handleExtract(item)}
               ></button>
-              <button className="botaoExcluir" onClick={() => handleDelete(item)}></button>
+              <button
+                className="botaoExcluir"
+                onClick={() => handleDelete(item)}
+              ></button>
             </div>
             <div className="mesExtrato">
               <span>{getMonthName(new Date(item.data))}</span>
             </div>
             <div className="depositoExtrato">
               <span>{item.tipo}</span>
-              <span className="dataExtrato">
+              <span className="dataExtrato" onChange={handleDate}>
                 {!(item.codigoTransacao == code) ? (
                   `${getformattedDate(new Date(item.data))}`
                 ) : item.codigoTransacao == code && isChecked ? (
