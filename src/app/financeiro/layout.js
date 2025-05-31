@@ -25,7 +25,7 @@ export default function Layout({ children }) {
           {children}
         </div>
         <div>
-          <ExtratoCard />
+          <ExtratoCard id={id} />
         </div>
       </div>
     </div>

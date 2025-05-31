@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./RegisterModal.css";
 import Image from "next/image";
+import { createAccount, createUser }  from "../../financeiro/util-services";
+import { getUsers } from "../../financeiro/util-services";
 
 const RegisterModal = ({ onClose }) => {
   const modalRef = useRef(null);
@@ -45,37 +47,28 @@ const RegisterModal = ({ onClose }) => {
         saldo: 0,
         extrato: [],
       };
-      const response = await fetch("http://localhost:4000/contas", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
 
-      body: JSON.stringify(novaContaUsuario),
-    });
+      const response = await createAccount(novaContaUsuario);
+
+      if(response.ok) {
+        console.log("Conta criada com sucesso!");
+      }
   }
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const responseUsers = await fetch("http://localhost:4000/usuarios");
+    const responseUsers = await getUsers();
 
     if (responseUsers.ok) {
       const usuarios = await responseUsers.json();
 
       const idUsuario =
-        usuarios.length > 0 ? usuarios[usuarios.length - 1].id + 1 : 1;
+        usuarios.length > 0 ? parseInt(usuarios[usuarios.length - 1].id) + 1 : 1;
       formData.id = idUsuario;
     }
 
-    const response = await fetch("http://localhost:4000/usuarios", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-
-      body: JSON.stringify(formData),
-    });
+    const response = await createUser(formData);
 
     if (response.ok) {
       handleAccount();

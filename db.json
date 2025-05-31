@@ -1,7 +1,7 @@
 {
   "usuarios": [
     {
-      "id": 1,
+      "id": "1",
       "userName": "Usuário Teste",
       "email": "teste@email.com",
       "password": "123456",
@@ -11,11 +11,17 @@
   ],
   "contas": [
     {
-      "id": 1,
       "userName": "Usuário Teste",
-      "dataCriacao": "2025-05-27T11:49:13.701Z",
-      "saldo": 0,
-      "extrato": []
+      "saldo": 130,
+      "extrato": [
+        {
+          "codigoTransacao": 43329,
+          "tipo": "Depósito",
+          "valor": 10,
+          "data": "Fri, 30 May 2025 11:36:58 GMT"
+        }
+      ],
+      "id": "1"
     }
   ]
 }

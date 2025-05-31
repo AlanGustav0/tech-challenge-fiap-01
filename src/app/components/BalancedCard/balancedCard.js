@@ -3,56 +3,41 @@
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import React, { useState, useEffect } from "react";
 import "./balancedCard.css"; // Estilos
-
-export async function getUser(id) {
-  const response = await fetch(`http://localhost:4000/usuarios?id=${id}`);
-
-  if (response.ok) {
-    const user = await response.json();
-
-    return user[0];
-  }
-
-  return null;
-}
-
-export async function getAccountUser(id) {
-  const response = await fetch(`http://localhost:4000/contas?id=${id}`);
-
-  if (response.ok) {
-    const account = await response.json();
-
-    return account[0];
-  }
-
-  return null;
-}
+import {
+  getAccountUserById,
+  getUserById,
+} from "../../financeiro/util-services";
 
 const BalancedCardComponent = (userId) => {
   const [user, setUser] = useState({ id: 0, userName: "", email: "" });
-  const [account, setAccount] = useState({ userName: "", saldo: 0, extrato: [] });
+  const [account, setAccount] = useState({
+    userName: "",
+    saldo: 0,
+    extrato: [],
+  });
 
   useEffect(() => {
-    getUser(userId.id).then((data) => {
-      if (data) setUser({
-        id: data.id,
-        userName: data.userName,
-        email: data.email,
-      });
+    getUserById(userId.id).then((data) => {
+      if (data)
+        setUser({
+          id: data.id,
+          userName: data.userName,
+          email: data.email,
+        });
     });
   }, [userId.id]);
 
   useEffect(() => {
-    getAccountUser(userId.id).then((data) => {
-      if (data) setAccount({
-        userName: data.userName,
-        saldo: data.saldo,
-        extrato: data.extrato,
-      });
+    getAccountUserById(userId.id).then((data) => {
+      if (data)
+        setAccount({
+          userName: data.userName,
+          saldo: data.saldo,
+          extrato: data.extrato,
+        });
     });
   }, [userId.id]);
 
-  console.log("User:", account);
   const balance = account.saldo;
 
   const [isBalanceVisible, setIsBalanceVisible] = useState(false);
