@@ -2,7 +2,7 @@ import "./services.css";
 import Image from "next/image";
 import Link from "next/link";
 
-const Services = () => {
+const Services = (userid) => {
   return (
     <div className="services-container">
       <h2 className="titulo-servicos">Confira os serviços disponíveis</h2>
@@ -23,7 +23,7 @@ const Services = () => {
             width={60}
             height={60}
           />
-          <Link href="/financeiro/servicos/cartoes">
+          <Link href={`/financeiro/servicos/cartoes/id=${userid.id}`}>
             <p>Meus Cartões</p>
           </Link>
         </div>

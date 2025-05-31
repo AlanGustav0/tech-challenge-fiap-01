@@ -65,7 +65,7 @@ const RegisterModal = ({ onClose }) => {
 
       const idUsuario =
         usuarios.length > 0 ? parseInt(usuarios[usuarios.length - 1].id) + 1 : 1;
-      formData.id = idUsuario;
+      formData.id = idUsuario.toString();
     }
 
     const response = await createUser(formData);

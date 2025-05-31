@@ -23,7 +23,7 @@ const PageInvestments = () => {
   };
 
   const DoughnutChart = dynamic(
-    () => import('../../components/DoughnutChart.js'),
+    () => import('../../../components/DoughnutChart.js'),
     { ssr: false }
   );
 
