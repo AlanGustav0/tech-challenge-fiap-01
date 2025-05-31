@@ -7,6 +7,14 @@
       "password": "123456",
       "terms": true,
       "dataCriacao": "2025-05-27T11:49:13.701Z"
+    },
+    {
+      "id": "2",
+      "userName": "Teste2",
+      "email": "teste2@email.com",
+      "password": "123",
+      "terms": true,
+      "dataCriacao": "2025-05-31T00:27:22.466Z"
     }
   ],
   "contas": [
@@ -18,10 +26,23 @@
           "codigoTransacao": 43329,
           "tipo": "Depósito",
           "valor": 10,
-          "data": "Fri, 30 May 2025 11:36:58 GMT"
+          "data": "2025-05-31T00:27:22.466Z"
         }
       ],
       "id": "1"
+    },
+    {
+      "userName": "Teste2",
+      "saldo": 10,
+      "extrato": [
+        {
+          "codigoTransacao": 8986,
+          "tipo": "Depósito",
+          "valor": 10,
+          "data": "2025-05-31T00:27:22.466Z"
+        }
+      ],
+      "id": "2"
     }
   ]
 }

@@ -1,4 +1,4 @@
-import PageInvestmentsComponent from "./pageInvestments";
+import PageInvestmentsComponent from "../[id]/pageInvestments";
 
 const PageInvestments = () => {
     return <PageInvestmentsComponent />

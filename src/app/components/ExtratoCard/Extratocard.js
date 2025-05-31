@@ -33,6 +33,11 @@ export default function ExtratoCard(userId) {
       setIsChecked(true);
       codeSet(event.codigoTransacao);
     } else {
+
+      if(!newDate){
+      alert('Anteção, é necessário informar a data!');
+      return;
+    }
       setIsChecked(false);
       codeSet(event.codigoTransacao);
 
@@ -69,6 +74,7 @@ export default function ExtratoCard(userId) {
   };
 
   const handleDate = (event) => {
+    
     const [year, month, day] = event.target.value.split('-');
     const date = new Date(Number(year), Number(month) - 1, Number(day));
     setDate(date);

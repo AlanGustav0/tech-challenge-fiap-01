@@ -18,7 +18,7 @@ export default function Layout({ children }) {
       <Navbar id={id}/>
       <div className="layout-content">
         <div>
-          <Sidebar />
+          <Sidebar id={id}/>
         </div>
         <div className="layout-content-inner">
           <BalancedCardComponent id={id}/>
