@@ -1,0 +1,21 @@
+# Evita copiar os módulos instalados do host
+node_modules
+
+# Evita copiar arquivos de log
+npm-debug.log
+
+# Ignora arquivos de lock (opcional, se preferir que o build gere seus próprios locks)
+package-lock.json
+yarn.lock
+
+# Ignora o cache do Next.js e outras pastas de build
+.next
+.cache
+
+# Ignora arquivos de ambiente
+.env
+.env.local
+
+# Ignora diretórios e arquivos de versionamento
+.git
+.gitignore
