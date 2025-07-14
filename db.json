@@ -15,6 +15,22 @@
       "password": "123",
       "terms": true,
       "dataCriacao": "2025-05-31T00:27:22.466Z"
+    },
+    {
+      "id": "3",
+      "userName": "severino alan",
+      "email": "alan@almeida.com",
+      "password": "alan12345",
+      "terms": true,
+      "dataCriacao": "2025-07-12T19:54:04.321Z"
+    },
+    {
+      "id": "4",
+      "userName": "alan severino de almeida",
+      "email": "alan@almeida.com",
+      "password": "alan1991",
+      "terms": true,
+      "dataCriacao": "2025-07-13T14:29:34.833Z"
     }
   ],
   "contas": [
@@ -43,6 +59,20 @@
         }
       ],
       "id": "2"
+    },
+    {
+      "id": "3",
+      "userName": "severino alan",
+      "dataCriacao": "2025-07-12T19:54:04.321Z",
+      "saldo": 0,
+      "extrato": []
+    },
+    {
+      "id": "4",
+      "userName": "alan severino de almeida",
+      "dataCriacao": "2025-07-13T14:29:34.833Z",
+      "saldo": 0,
+      "extrato": []
     }
   ]
 }
