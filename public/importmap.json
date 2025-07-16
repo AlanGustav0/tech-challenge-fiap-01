@@ -1,0 +1,5 @@
+{
+  "imports": {
+    "mfe-angular": "http://localhost:4200/microfrontend.js"
+  }
+}
