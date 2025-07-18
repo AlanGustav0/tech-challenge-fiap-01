@@ -6,6 +6,7 @@ import "./userPageHome.css";
 import {
   getAccountUserById,
   updateAccountById,
+  getUserById,
 } from "../../financeiro/util-services";
 
 export default function UserPageHome(userId) {
@@ -15,10 +16,20 @@ export default function UserPageHome(userId) {
     extrato: [],
   });
 
+  const [showModal, setShowModal] = useState(false);
+  const [senhaDigitada, setSenhaDigitada] = useState("");
+  const [senhaCorreta, setSenhaCorreta] = useState("");
+  const [mensagemModal, setMensagemModal] = useState(
+    "Para concluir a transação, insira a senha cadastrada no login."
+  );
+  const [transacaoFinalizada, setTransacaoFinalizada] = useState(false);
+  const [erroTransacao, setErroTransacao] = useState(false);
+  const [valorTransacao, setValorTransacao] = useState(""); // Valor real sem formatação
+  const [valorFormatado, setValorFormatado] = useState(""); // Valor formatado para exibição
+
   const angularRef = useRef(null);
 
   useEffect(() => {
-    // 1. Buscar dados do usuário
     getAccountUserById(userId.id).then((data) => {
       if (data) {
         setAccount({
@@ -29,7 +40,12 @@ export default function UserPageHome(userId) {
       }
     });
 
-    // 2. Montar microfrontend Angular corretamente
+    getUserById(userId.id).then((user) => {
+      if (user && user.password) {
+        setSenhaCorreta(user.password);
+      }
+    });
+
     if (angularRef.current) {
       mountRootParcel(() => System.import("mfe-angular"), {
         domElement: angularRef.current,
@@ -37,54 +53,77 @@ export default function UserPageHome(userId) {
     }
   }, [userId.id]);
 
-  const handleTransaction = async () => {
-    const transactionType = document.getElementById("tipoTransacao").value;
-    const transactionValue = document.getElementById("valorTransacao").value;
+  const handleTransaction = () => {
+    setSenhaDigitada("");
+    setMensagemModal("Para concluir a transação, insira a senha cadastrada no login.");
+    setTransacaoFinalizada(false);
+    setErroTransacao(false);
+    setShowModal(true);
+  };
 
-    if (!transactionType || isNaN(parseFloat(transactionValue))) {
-      alert("Por favor, selecione o tipo de transação e insira um valor válido.");
+  const formatarValor = (valor) => {
+    const numericValue = valor.replace(/\D/g, "");
+    const valorFinal = (parseFloat(numericValue) / 100).toFixed(2);
+    setValorTransacao(valorFinal);
+    setValorFormatado(
+      Number(valorFinal).toLocaleString("pt-BR", {
+        style: "currency",
+        currency: "BRL",
+      })
+    );
+  };
+
+  const confirmarTransacao = async () => {
+    if (senhaDigitada !== senhaCorreta) {
+      setMensagemModal("Senha incorreta. Tente novamente.");
+      setErroTransacao(true);
       return;
     }
 
-    const valor = parseFloat(transactionValue);
+    const transactionType = document.getElementById("tipoTransacao").value;
+    const valor = parseFloat(valorTransacao);
 
-    if (transactionType === "Depósito") {
-      account.saldo += valor;
-      account.extrato.push({
-        codigoTransacao: Math.floor(Math.random() * 100000),
-        tipo: transactionType,
-        valor: valor,
-        data: new Date().toISOString(),
-      });
+    if (!transactionType || isNaN(valor)) {
+      alert("Selecione o tipo de transação e insira um valor válido.");
+      return;
+    }
 
-      const response = await updateAccountById(userId.id, account);
+    if (transactionType === "Saque" && account.saldo < valor) {
+      alert("Saldo insuficiente.");
+      return;
+    }
 
-      if (response.ok) {
-        alert(`Depósito de R$ ${valor} realizado com sucesso!`);
+    const novaTransacao = {
+      tipo: transactionType,
+      valor,
+      data: new Date().toISOString(),
+      codigoTransacao: Math.floor(Math.random() * 100000),
+    };
+
+    const novoSaldo =
+      transactionType === "Depósito"
+        ? account.saldo + valor
+        : account.saldo - valor;
+
+    const novaConta = {
+      ...account,
+      saldo: novoSaldo,
+      extrato: [...account.extrato, novaTransacao],
+    };
+
+    const response = await updateAccountById(userId.id, novaConta);
+
+    if (response.ok) {
+      setMensagemModal("Transação concluída com sucesso!");
+      setErroTransacao(false);
+      setTransacaoFinalizada(true);
+      setTimeout(() => {
+        setShowModal(false);
         window.location.reload();
-      } else {
-        alert("Erro ao realizar depósito. Tente novamente.");
-      }
-    } else if (transactionType === "Saque") {
-      if (account.saldo >= valor) {
-        account.saldo -= valor;
-        account.extrato.push({
-          tipo: transactionType,
-          valor: valor,
-          data: new Date().toISOString(),
-        });
-
-        const response = await updateAccountById(userId.id, account);
-
-        if (response.ok) {
-          alert(`Saque de R$ ${valor} realizado com sucesso!`);
-          window.location.reload();
-        } else {
-          alert("Erro ao realizar saque. Tente novamente.");
-        }
-      } else {
-        alert("Saldo insuficiente para realizar o saque.");
-      }
+      }, 2000);
+    } else {
+      setMensagemModal("Erro ao processar a transação.");
+      setErroTransacao(true);
     }
   };
 
@@ -100,7 +139,14 @@ export default function UserPageHome(userId) {
                 <option value="Saque">Saque</option>
                 <option value="Depósito">DOC/TED</option>
               </select>
-              <input type="text" id="valorTransacao" placeholder="00,00" />
+
+              <input
+                type="text"
+                placeholder="R$ 0,00"
+                value={valorFormatado}
+                onChange={(e) => formatarValor(e.target.value)}
+              />
+
               <button className="concluirTransacao" onClick={handleTransaction}>
                 Concluir transação
               </button>
@@ -108,8 +154,41 @@ export default function UserPageHome(userId) {
           </div>
         </div>
 
-        {/* Componente Angular será injetado aqui via Single SPA */}
         <div id="angular-mfe" ref={angularRef}></div>
+
+        {showModal && (
+          <div className="modal-overlay">
+            <div className="modal-box">
+              <p className={`mensagem-modal ${erroTransacao ? "erro" : ""}`}>
+                {mensagemModal}
+                {transacaoFinalizada && <span className="check-icon">✅</span>}
+              </p>
+
+              {!transacaoFinalizada && (
+                <>
+                  <input
+                    type="password"
+                    placeholder="Digite sua senha"
+                    value={senhaDigitada}
+                    onChange={(e) => setSenhaDigitada(e.target.value)}
+                    className="input-senha"
+                  />
+                  <div className="botoes-modal">
+                    <button onClick={confirmarTransacao} className="botao-confirmar">
+                      Confirmar
+                    </button>
+                    <button
+                      onClick={() => setShowModal(false)}
+                      className="botao-fechar"
+                    >
+                      Fechar
+                    </button>
+                  </div>
+                </>
+              )}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
