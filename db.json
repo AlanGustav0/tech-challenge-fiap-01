@@ -68,11 +68,35 @@
       "extrato": []
     },
     {
-      "id": "4",
       "userName": "alan severino de almeida",
-      "dataCriacao": "2025-07-13T14:29:34.833Z",
-      "saldo": 0,
-      "extrato": []
+      "saldo": 42423.44,
+      "extrato": [
+        {
+          "tipo": "Depósito",
+          "valor": 100,
+          "data": "2025-07-18T00:20:22.097Z",
+          "codigoTransacao": 50959
+        },
+        {
+          "tipo": "Depósito",
+          "valor": 10000,
+          "data": "2025-07-18T00:25:03.284Z",
+          "codigoTransacao": 35411
+        },
+        {
+          "tipo": "Depósito",
+          "valor": 0.12,
+          "data": "2025-07-18T00:30:38.687Z",
+          "codigoTransacao": 65765
+        },
+        {
+          "tipo": "Depósito",
+          "valor": 32323.32,
+          "data": "2025-07-18T00:31:18.130Z",
+          "codigoTransacao": 16973
+        }
+      ],
+      "id": "4"
     }
   ]
 }
