@@ -1,3 +1,5 @@
+'use client';
+
 import "./ExtratoCard.css"; // Estilos
 import { getAccountUserById } from "../../financeiro/util-services";
 import React, { useState, useEffect } from "react";
@@ -6,8 +8,10 @@ import {
   getMonthName,
 } from "../../shared/utils/date-utils.ts";
 import { updateAccountById } from "../../financeiro/util-services";
+import { useSelector } from "react-redux";
 
-export default function ExtratoCard(userId) {
+export default function ExtratoCard() {
+  const user = useSelector((state => state.user));
   const [isChecked, setIsChecked] = useState(false);
   const [code, codeSet] = useState(0);
   const [newDate, setDate] = useState("");
@@ -18,7 +22,7 @@ export default function ExtratoCard(userId) {
   });
 
   useEffect(() => {
-    getAccountUserById(userId.id).then((data) => {
+    getAccountUserById(user.id).then((data) => {
       if (data)
         setAccount({
           userName: data.userName,
@@ -26,7 +30,7 @@ export default function ExtratoCard(userId) {
           extrato: data.extrato,
         });
     });
-  }, [userId.id]);
+  }, [user.id]);
 
   const handleExtract = async (event) => {
     if (!isChecked) {
@@ -48,7 +52,7 @@ export default function ExtratoCard(userId) {
       if (index == !-1) {
         account.extrato[index].data = newDate;
         account.extrato.splice(index, 1,account.extrato[index]);
-        const response = await updateAccountById(userId.id, account);
+        const response = await updateAccountById(user.id, account);
 
         if (response.ok) {
           alert(`Extrato editado com sucesso!`);
@@ -64,7 +68,7 @@ export default function ExtratoCard(userId) {
 
     if (index != -1) {
       account.extrato.splice(index, 1);
-      const response = await updateAccountById(userId.id, account);
+      const response = await updateAccountById(user.id, account);
 
       if (response.ok) {
         alert(`Extrato removido com sucesso!`);
