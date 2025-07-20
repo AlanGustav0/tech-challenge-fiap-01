@@ -1,34 +1,16 @@
 'use client';
 
 import Image from 'next/image';
-import React, { useState,useEffect } from 'react';
+import React, { useState } from 'react';
 import './Navbar.css'; // Importando o CSS do Navbar
+import { useSelector } from 'react-redux';
 
-export async function getUser(id) {
-  const response = await fetch(`http://localhost:4000/usuarios?id=${id}`);
-
-  if (response.ok) {
-    const user = await response.json();
-
-    return user[0];
-  }
-
-  return null;
-}
-
-export default function Navbar(userId) {
+export default function Navbar() {
   const [menuVisible, setMenuVisible] = useState(false);
-  const [user, setUser] = useState({ id: 0, userName: "", email: "" });
   
-    useEffect(() => {
-      getUser(userId.id).then((data) => {
-        if (data) setUser({
-          id: data.id,
-          userName: data.userName,
-          email: data.email,
-        });
-      });
-    }, [userId.id]);
+  const user = useSelector((state) => state.user);
+
+  console.log(user);
 
   const toggleMenu = () => {
     setMenuVisible(!menuVisible);
@@ -37,7 +19,7 @@ export default function Navbar(userId) {
   return (
     <div className="navbar">
       <div className="navbar-content">
-        <span className="username">{user.userName}</span>
+        <span className="username">{user.name}</span>
         <Image
           className="user-icon"
           src="/icone_user.png"

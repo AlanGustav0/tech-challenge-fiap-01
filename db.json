@@ -36,13 +36,13 @@
   "contas": [
     {
       "userName": "Usuário Teste",
-      "saldo": 130,
+      "saldo": 120,
       "extrato": [
         {
-          "codigoTransacao": 43329,
-          "tipo": "Depósito",
+          "tipo": "Saque",
           "valor": 10,
-          "data": "2025-05-31T00:27:22.466Z"
+          "data": "2025-07-20T15:50:56.487Z",
+          "codigoTransacao": 82201
         }
       ],
       "id": "1"

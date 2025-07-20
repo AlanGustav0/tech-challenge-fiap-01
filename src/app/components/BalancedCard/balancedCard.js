@@ -5,11 +5,11 @@ import React, { useState, useEffect } from "react";
 import "./balancedCard.css"; // Estilos
 import {
   getAccountUserById,
-  getUserById,
 } from "../../financeiro/util-services";
+import { useSelector } from "react-redux";
 
-const BalancedCardComponent = (userId) => {
-  const [user, setUser] = useState({ id: 0, userName: "", email: "" });
+const BalancedCardComponent = () => {
+  const user = useSelector((state) => state.user);
   const [account, setAccount] = useState({
     userName: "",
     saldo: 0,
@@ -17,18 +17,7 @@ const BalancedCardComponent = (userId) => {
   });
 
   useEffect(() => {
-    getUserById(userId.id).then((data) => {
-      if (data)
-        setUser({
-          id: data.id,
-          userName: data.userName,
-          email: data.email,
-        });
-    });
-  }, [userId.id]);
-
-  useEffect(() => {
-    getAccountUserById(userId.id).then((data) => {
+    getAccountUserById(user.id).then((data) => {
       if (data)
         setAccount({
           userName: data.userName,
@@ -36,7 +25,7 @@ const BalancedCardComponent = (userId) => {
           extrato: data.extrato,
         });
     });
-  }, [userId.id]);
+  }, [user.id]);
 
   const balance = account.saldo;
 
@@ -59,7 +48,7 @@ const BalancedCardComponent = (userId) => {
 
   return (
     <div className="balance-card">
-      <h2>Olá, {user.userName}! :)</h2>
+      <h2>Olá, {user.name}! :)</h2>
       <p>{getCurrentDate()}</p>
       <div className="balance-info">
         <span>Saldo</span>

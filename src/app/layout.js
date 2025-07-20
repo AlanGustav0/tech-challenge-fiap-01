@@ -1,5 +1,5 @@
-// src/app/layout.js
-import '../app/globals.css';
+import "../app/globals.css";
+import Providers from "./providers";
 
 export default function Layout({ children }) {
   return (
@@ -21,7 +21,7 @@ export default function Layout({ children }) {
         />
       </head>
       <body>
-        {children}
+        <Providers children={children}></Providers>
       </body>
     </html>
   );

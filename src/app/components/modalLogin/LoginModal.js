@@ -1,11 +1,14 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./LoginModal.css";
 import Image from "next/image";
-import { redirect } from 'next/navigation'
+import { redirect } from "next/navigation";
 import { getUsers } from "../../financeiro/util-services";
-
+import { useDispatch } from "react-redux";
+import { updateUser } from "../../redux/userSlice";
 
 const LoginModal = ({ onClose }) => {
+  const dispatch = useDispatch();
+
   const modalRef = useRef(null);
   const [isOpen, setIsOpen] = useState(false);
   const [formData, setFormData] = useState({
@@ -55,6 +58,9 @@ const LoginModal = ({ onClose }) => {
         alert("Login realizado com sucesso!");
         setIsOpen(false);
         onClose();
+
+        dispatch(updateUser({ name: usuario[0].userName, email: usuario[0].email, id: usuario[0].id }));
+      
         redirect(`/financeiro/pageUser/id=${usuario[0].id}`);
       } else {
         alert("Erro verifique usuário e senha");
