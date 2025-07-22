@@ -6,7 +6,10 @@ export default function Layout({ children }) {
     <html>
       <head>
         {/* Importar SystemJS primeiro */}
-        <script src="https://cdn.jsdelivr.net/npm/systemjs/dist/system.min.js"></script>
+        <script
+          src="https://cdn.jsdelivr.net/npm/systemjs/dist/system.min.js"
+          async
+        ></script>
 
         {/* Importmap inline */}
         <script
@@ -18,10 +21,11 @@ export default function Layout({ children }) {
               },
             }),
           }}
+          async
         />
       </head>
       <body>
-        <Providers children={children}></Providers>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );
