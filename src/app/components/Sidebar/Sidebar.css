@@ -3,9 +3,9 @@
     background-color: #f8f8f8; /* Cor de fundo do menu */
     padding: 20px;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Sombra */
-    height: calc(100vh - 60px); /* Altura total menos a altura da navbar */
+    height: 84vh; /* Altura total menos a altura da navbar */
     text-align: center;
-    border-radius: 2%;
+    border-radius: 0.5rem;
 }
 
 .menu-list {
