@@ -61,3 +61,7 @@ Para inicialiar o docker neste projeto, basta abrir o terminal e ir tá a pasta 
 `docker build -t tech-challenge-fiap-01 .` **(faz o build e cria um container para o projeto)**
 
 `docker run -p 3000:3000 --name tech-challenge tech-challenge-fiap-01` **(executa o projeto na porta 3000)**
+
+##  Link do projeto no Vercel
+
+https://tech-challenge-fiap-01.vercel.app/
