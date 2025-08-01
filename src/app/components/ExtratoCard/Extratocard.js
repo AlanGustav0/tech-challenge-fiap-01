@@ -2,14 +2,13 @@
 
 import "./ExtratoCard.css"; // Estilos
 import { getAccountUserById } from "../../financeiro/util-services";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import {
   getformattedDate,
   getMonthName,
 } from "../../shared/utils/date-utils.ts";
 import { updateAccountById } from "../../financeiro/util-services";
 import { useSelector } from "react-redux";
-import FiltroExtrato from "./FiltroExtrato";
 
 export default function ExtratoCard() {
   const user = useSelector((state => state.user));
@@ -20,6 +19,11 @@ export default function ExtratoCard() {
     userName: "",
     saldo: 0,
     extrato: [],
+  });
+  const [filters, setFilters] = useState({
+    month: 'all',
+    transactionType: 'all',
+    searchText: ''
   });
 
   useEffect(() => {
@@ -78,19 +82,58 @@ export default function ExtratoCard() {
     }
   };
 
+  const availableMonths = account.extrato.reduce((acc, item) => {
+    const date = new Date(item.data);
+    const monthYear = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`;
+    if (!acc.includes(monthYear)) {
+      acc.push(monthYear);
+    }
+    return acc;
+  }, []);
+
+  const formatMonth = (monthStr) => {
+    if (monthStr === 'all') return 'Todos';
+    const [year, month] = monthStr.split('-');
+    const monthNames = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
+      'Julho', 'Agosto', 'Setembro', 'Outurbo', 'Novembro', 'Dezembro'];
+    return `${monthNames[parseInt(month) - 1]} ${year}`;
+  };
+
   const handleDate = (event) => {
     const [year, month, day] = event.target.value.split('-');
     const date = new Date(Number(year), Number(month) - 1, Number(day));
     setDate(date);
   }
 
-  const [searchTerm, setSearchTerm] = useState('');
+  const filteredData = useMemo(() => {
+    console.log('account', account.extrato)
+    return account.extrato.filter(item => {
+      if (filters.month !== 'all') {
+        const date = new Date(item.data);
+        const itemMonth = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`;
+        if (itemMonth !== filters.month) return false;
+      }
 
-  const filteredData = account.extrato && account.extrato.length > 0 ? 
-        account.extrato.filter((item, index) =>  item.tipo.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    item.valor.toLowerCase().includes(searchTerm.toLowerCase())) : [];
+      if (filters.transactionType !== 'all') {
+        const transactionTypeLower = filters.transactionType.toLowerCase();
+        return item.tipo.toLowerCase().includes(transactionTypeLower);
+      }
 
-  
+      if (filters.searchText) {
+        const searchLower = filters.searchText.toLowerCase();
+        return (
+          item.tipo.toLowerCase().includes(searchLower) ||
+          item.valor === Number(filters.searchText)
+        );
+      }
+      return true;
+    });
+  }, [account.extrato, filters.month, filters.transactionType, filters.searchText]);
+
+  const handleFilterChange = (e) => {
+    const { name, value } = e.target;
+    setFilters(prev => ({ ...prev, [name]: value }));
+  };
 
   return (
     <div className="extrato-card">
@@ -98,51 +141,55 @@ export default function ExtratoCard() {
         <h2>Extrato</h2>
       </div>
 
-      <div>
-        <label for="Search">
-          <div class="relative">
-            <input
-              type="text"
-              id="Search"
-              placeholder="Buscar"
-              class="mt-1 w-full rounded border-gray-300 p-1.5 shadow-sm md:text-md"
-              value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-            />
-
-            <span class="absolute inset-y-0 right-2 grid w-8 place-content-center">
-              <button
-                type="button"
-                aria-label="Submit"
-                class="rounded-full p-1.5 text-gray-700 transition-colors hover:bg-gray-100"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke-width="1.5"
-                  stroke="currentColor"
-                  class="size-4"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
-                  />
-                </svg>
-              </button>
-            </span>
-          </div>
-        </label>
+      <div className="search-container">
+        <div className="search-form">
+          <input type="text" id="searchText"
+            name="searchText" placeholder="Buscar" className="search-input" value={filters.searchText}
+            onChange={handleFilterChange} />
+          <button className="search-button">
+            <img src="../../../md-search.svg" />
+          </button>
+        </div>
       </div>
 
-      <div>
-        <FiltroExtrato/>
+      <div className="filter-container">
+        <div className="custom-select">
+          <select
+            id="month"
+            name="month"
+            value={filters.month}
+            onChange={handleFilterChange}
+          >
+            <option value="all">Mês</option>
+            {availableMonths.map(month => (
+              <option key={month} value={month}>
+                {formatMonth(month)}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <div className="custom-select">
+          <select
+            id="transactionType"
+            name="transactionType"
+            value={filters.transactionType}
+            onChange={handleFilterChange}
+          >
+            <option value="all" className="select-selected">Tipo</option>
+            <option value="depósito" className="select-items">Depósito</option>
+            <option value="saque" className="select-items">Saque</option>
+            <option value="transferência" className="select-items">Transferência</option>
+          </select>
+        </div>
+
       </div>
 
-      {filteredData.length ? filteredData.map((item, index) => (
-          <div className="extrato-item" key={index}>
-            {/* <div>
+      <div className="transaction-list">
+        <div className="transaction-content">
+          {filteredData.length ? filteredData.map((item, index) => (
+            <div className="extrato-item" key={index}>
+              {/* <div>
               <button
                 className={
                   !isChecked
@@ -158,34 +205,38 @@ export default function ExtratoCard() {
                 onClick={() => handleDelete(item)}
               ></button>
             </div> */}
-            <div className="mesExtrato">
-              <span>{getMonthName(new Date(item.data))}</span>
-            </div>
-            <div className="depositoExtrato">
-              <span>{item.tipo}</span>
-              <span className="dataExtrato" onChange={handleDate}>
-                {!(item.codigoTransacao == code) ? (
-                  `${getformattedDate(new Date(item.data))}`
-                ) : item.codigoTransacao == code && isChecked ? (
-                  <input type="date" />
-                ) : (
-                  `${getformattedDate(new Date(item.data))}`
-                )}
+              <div className="mesExtrato">
+                <span>{getMonthName(new Date(item.data))}</span>
+              </div>
+              <div className="depositoExtrato">
+                <span>{item.tipo}</span>
+                <span className="dataExtrato" onChange={handleDate}>
+                  {!(item.codigoTransacao == code) ? (
+                    `${getformattedDate(new Date(item.data))}`
+                  ) : item.codigoTransacao == code && isChecked ? (
+                    <input type="date" />
+                  ) : (
+                    `${getformattedDate(new Date(item.data))}`
+                  )}
+                </span>
+              </div>
+              <span className="valorExtrato">
+                {item.valor
+                  ? `R$ ${item.valor.toLocaleString("pt-BR", {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2,
+                  })}`
+                  : "0,00"}
               </span>
+              <span className="divider-custom"></span>
             </div>
-            <span className="valorExtrato">
-              {item.valor
-                ? `R$ ${item.valor.toLocaleString("pt-BR", {
-                  minimumFractionDigits: 2,
-                  maximumFractionDigits: 2,
-                })}`
-                : "0,00"}
-            </span>
-          </div>
-        ))
-       : (
-        <div className="sem-transacao">Nenhuma Transação realizada</div>
-      )}
+          ))
+            : (
+              <div className="sem-transacao">Nenhuma Transação realizada</div>
+            )}
+        </div>
+
+      </div>
     </div>
   );
 }

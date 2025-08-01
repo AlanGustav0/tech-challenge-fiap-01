@@ -1,7 +1,6 @@
 .headerExtrato {
   display: flex;
-  justify-content: space-around;
-  align-items: center;
+  justify-content: space-between;
 }
 .botaoEditar {
   background-image: url("/icone_lapis.png");
@@ -25,26 +24,45 @@
   cursor: pointer;
   display: inline-block;
 }
+
 .extrato-card {
   background-color: #f8f8f8;
-  color: black;
-  padding: 20px;
+  color: #222;
+  padding: 1rem;
   border-radius: 8px;
   margin-left: 20px;
   width: 100%;
+  position:relative;
   height: 84vh;
-  overflow-y: auto;
+  overflow:hidden;
 }
+
+.transaction-list {
+  position:relative;
+  width: 100%;
+  max-height: 60vh;
+  height: 60vh;
+  overflow:hidden;
+  overflow-y:auto;
+  margin-top: 1rem;
+}
+
+.transaction-content {
+  animation: scroll 10s linear 1s infinite;
+}
+
 .extrato-item {
   display: flex;
   justify-content: space-between;
-  margin: 10px 0;
+  margin: 0 0 0.5rem;
   flex-direction: column;
+  min-height: 2.5rem;
 }
 
-.extrato-item span {
-  font-size: 16px;
-}
+/* @keyframes scroll {
+	100% { top: -550px; }
+} */
+ 
 .mesExtrato {
   color: #47a138;
   font-weight: 700;
@@ -52,23 +70,114 @@
   display: flex;
   justify-content: space-between;
 }
+
 .depositoExtrato {
   padding: 10px 0 10px 0;
   display: flex;
   justify-content: space-between;
 }
+
 .dataExtrato {
   color: #8b8b8b;
   font-size: 13px;
 }
+
 .valorExtrato {
   padding-bottom: 10px;
-  border-bottom: 1px solid #47a138;
   font-weight: 700;
+}
+
+.divider-custom {
+  display: block;
+  width: 70%;
+  justify-content: start;
+  border-bottom: 1px solid #47a138;
 }
 
 .sem-transacao {
   padding: .5rem;
+}
+
+.search-container {
+  margin: 1.5rem 0.25rem 1rem;
+}
+
+.search-form {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 40px;
+  border-radius: 40px;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  transition: all 0.3s ease;
+}
+
+.search-input {
+  position: absolute;
+  top: 10px;
+  left: 38px;
+  font-size: 14px;
+  background: none;
+  color: #5a6674;
+  border: none;
+  appearance: none;
+  outline: none;
+}
+
+.search-button {
+  position: absolute;
+  top: 10px;
+  left: 15px;
+  height: 20px;
+  width: 20px;
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: none;
+  outline: none!important;
+  cursor: pointer;
+  
+  & svg {
+    width: 20px;
+    height: 20px;
+    fill: #5a6674;
+  }
+}
+
+.filter-container {
+  display: flex;
+  position: relative;
+  width: 100%;
+  gap: 1rem;
+}
+
+.custom-select {
+  cursor: pointer;
+  width: 50%;
+  font-size: 1rem;
+  height: 2.5rem;
+  border-radius: 0.5rem;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+  background: #fff;
+  transition: all 0.3s ease;
+  &:focus {
+    color: #000;
+  }
+  &::-ms-expand {
+    display: none;
+  }
+}
+
+.custom-select select {
+  width: 100%;
+  height: 2.5rem;
+  padding: 0.5rem;
+  background: #fff;
+  border-radius: 0.5rem;
+  border: none;
 }
 
 /* Responsividade */
