@@ -31,9 +31,11 @@ export default function Layout({ children }) {
         <div>
           <Sidebar />
         </div>
-        <div className="layout-content-inner">
+        <div>
+          <div className="layout-content-inner">
           <BalancedCardComponent />
           {children}
+        </div>
         </div>
         <div>
           <ExtratoCard />

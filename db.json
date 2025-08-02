@@ -36,19 +36,43 @@
   "contas": [
     {
       "userName": "Usuário Teste",
-      "saldo": 119.9,
+      "saldo": 109.9,
       "extrato": [
-        {
-          "tipo": "Saque",
-          "valor": 10,
-          "data": "2025-07-20T15:50:56.487Z",
-          "codigoTransacao": 82201
-        },
         {
           "tipo": "Saque",
           "valor": 0.1,
           "data": "2025-07-20T15:52:33.103Z",
           "codigoTransacao": 12535
+        },
+        {
+          "tipo": "Depósito",
+          "valor": 100,
+          "data": "2025-07-18T00:20:22.097Z",
+          "codigoTransacao": 50959
+        },
+        {
+          "tipo": "Depósito",
+          "valor": 10000,
+          "data": "2025-05-18T00:25:03.284Z",
+          "codigoTransacao": 35411
+        },
+        {
+          "tipo": "Saque",
+          "valor": 100,
+          "data": "2025-07-22T00:20:22.097Z",
+          "codigoTransacao": 50955
+        },
+        {
+          "tipo": "Depósito",
+          "valor": 1000,
+          "data": "2025-06-22T00:25:03.284Z",
+          "codigoTransacao": 35412
+        },
+        {
+          "tipo": "Saque",
+          "valor": 10,
+          "data": "2025-08-01T21:08:52.006Z",
+          "codigoTransacao": 30858
         }
       ],
       "id": "1"
