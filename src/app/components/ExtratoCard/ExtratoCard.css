@@ -33,7 +33,7 @@
   margin-left: 20px;
   width: 100%;
   position:relative;
-  height: 84vh;
+  height: auto;
   overflow:hidden;
 }
 
@@ -179,6 +179,10 @@
   border-radius: 0.5rem;
   border: none;
 }
+.texto-vermelho {
+  color: red;
+}
+
 
 /* Responsividade */
 @media (max-width: 768px) {

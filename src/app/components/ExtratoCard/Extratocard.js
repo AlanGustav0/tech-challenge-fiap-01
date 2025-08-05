@@ -186,57 +186,45 @@ export default function ExtratoCard() {
       </div>
 
       <div className="transaction-list">
-        <div className="transaction-content">
-          {filteredData.length ? filteredData.map((item, index) => (
-            <div className="extrato-item" key={index}>
-              {/* <div>
-              <button
-                className={
-                  !isChecked
-                    ? "botaoEditar"
-                    : isChecked && code == item.codigoTransacao
-                    ? "botaoEditarChecked"
-                    : "botaoEditar"
-                }
-                onClick={() => handleExtract(item)}
-              ></button>
-              <button
-                className="botaoExcluir"
-                onClick={() => handleDelete(item)}
-              ></button>
-            </div> */}
-              <div className="mesExtrato">
-                <span>{getMonthName(new Date(item.data))}</span>
-              </div>
-              <div className="depositoExtrato">
-                <span>{item.tipo}</span>
-                <span className="dataExtrato" onChange={handleDate}>
-                  {!(item.codigoTransacao == code) ? (
-                    `${getformattedDate(new Date(item.data))}`
-                  ) : item.codigoTransacao == code && isChecked ? (
-                    <input type="date" />
-                  ) : (
-                    `${getformattedDate(new Date(item.data))}`
-                  )}
-                </span>
-              </div>
-              <span className="valorExtrato">
-                {item.valor
-                  ? `R$ ${item.valor.toLocaleString("pt-BR", {
-                    minimumFractionDigits: 2,
-                    maximumFractionDigits: 2,
-                  })}`
-                  : "0,00"}
-              </span>
-              <span className="divider-custom"></span>
-            </div>
-          ))
-            : (
-              <div className="sem-transacao">Nenhuma Transação realizada</div>
-            )}
+  <div className="transaction-content">
+    {filteredData.length ? filteredData.map((item, index) => (
+      <div className="extrato-item" key={index}>
+        <div className={`mesExtrato ${item.tipo === 'Saque' ? 'texto-vermelho' : ''}`}>
+          <span>{getMonthName(new Date(item.data))}</span>
         </div>
+        <div className={`depositoExtrato ${item.tipo === 'Saque' ? 'texto-vermelho' : ''}`}>
+          <span>{item.tipo}</span>
+          <span className="dataExtrato" onChange={handleDate}>
+            {!(item.codigoTransacao == code) ? (
+              `${getformattedDate(new Date(item.data))}`
+            ) : item.codigoTransacao == code && isChecked ? (
+              <input type="date" />
+            ) : (
+              `${getformattedDate(new Date(item.data))}`
+            )}
+          </span>
+        </div>
+        <span className="valorExtrato">
+  {item.valor
+    ? `R$ ${item.tipo === 'Saque' ? '- ' : ''}${item.valor.toLocaleString("pt-BR", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      })}`
+    : "0,00"}
+</span>
 
+
+        <span className="divider-custom"></span>
       </div>
+    ))
+      : (
+        <div className="sem-transacao">Nenhuma Transação realizada</div>
+      )}
+  </div>
+</div>
+
+
+
     </div>
   );
 }

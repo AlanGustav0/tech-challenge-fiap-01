@@ -1,6 +1,6 @@
 .investments-card {
   width: 610px;
-  height: 50vh;
+  height: auto;
   background-image: url('../../../../../public/fundo_investimentos.svg');
   padding: 32px 40px;
   border-radius: 0.5rem;

@@ -2,7 +2,7 @@
     background-image: url("/fundo_services.png");
     background-repeat: no-repeat;
     min-width: 620px;
-    height: 52vh;
+    height: auto;
     font-family: "Inter", sans-serif;
     border-radius: 8px;
     padding: .5rem 2rem 2rem 2rem;

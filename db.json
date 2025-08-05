@@ -31,6 +31,14 @@
       "password": "alan1991",
       "terms": true,
       "dataCriacao": "2025-07-13T14:29:34.833Z"
+    },
+    {
+      "id": "5",
+      "userName": "alan severino de almeida",
+      "email": "alan@almeida.com",
+      "password": "alan12345",
+      "terms": true,
+      "dataCriacao": "2025-08-05T20:50:23.785Z"
     }
   ],
   "contas": [
@@ -91,11 +99,65 @@
       "id": "2"
     },
     {
-      "id": "3",
       "userName": "severino alan",
-      "dataCriacao": "2025-07-12T19:54:04.321Z",
-      "saldo": 0,
-      "extrato": []
+      "saldo": 103265.73999999999,
+      "extrato": [
+        {
+          "tipo": "Depósito",
+          "valor": 16666.66,
+          "data": "2025-08-05T20:57:12.333Z",
+          "codigoTransacao": 18267
+        },
+        {
+          "tipo": "Depósito",
+          "valor": 32.32,
+          "data": "2025-08-05T20:57:37.957Z",
+          "codigoTransacao": 54704
+        },
+        {
+          "tipo": "Depósito",
+          "valor": 23.23,
+          "data": "2025-08-05T20:58:01.317Z",
+          "codigoTransacao": 20651
+        },
+        {
+          "tipo": "Depósito",
+          "valor": 534543.53,
+          "data": "2025-08-05T21:02:09.949Z",
+          "codigoTransacao": 77100
+        },
+        {
+          "tipo": "Saque",
+          "valor": 20000,
+          "data": "2025-08-05T21:21:54.756Z",
+          "codigoTransacao": 17915
+        },
+        {
+          "tipo": "Saque",
+          "valor": 30000,
+          "data": "2025-08-05T21:27:22.323Z",
+          "codigoTransacao": 88493
+        },
+        {
+          "tipo": "Saque",
+          "valor": 15000,
+          "data": "2025-08-05T21:35:16.219Z",
+          "codigoTransacao": 52404
+        },
+        {
+          "tipo": "Saque",
+          "valor": 400000,
+          "data": "2025-08-05T22:00:47.666Z",
+          "codigoTransacao": 43643
+        },
+        {
+          "tipo": "Depósito",
+          "valor": 17000,
+          "data": "2025-08-05T22:01:41.969Z",
+          "codigoTransacao": 88311
+        }
+      ],
+      "id": "3"
     },
     {
       "userName": "alan severino de almeida",
